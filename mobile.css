@@ -1,0 +1,82 @@
+body {
+    font-size: 30px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: #00fff2;
+}
+
+div {
+    display: none;
+}
+
+h1 {
+    font-size: 80px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+button {
+    font-size: 40px;
+    background-color: #1052e1;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+input[type='checkbox'] {
+	width: 32px;
+	height: 32px;
+}
+
+input[type='submit'] {
+	font-size: 35px;
+}
+
+select {
+	font-size: 48px;
+}
+
+input[type='text'] {
+	font-size: 38px;
+}
+
+input[type='password'] {
+	font-size: 48px;
+}
+
+.Video {
+    font-weight: bold;
+}
+
+p.Video {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    margin-bottom: 25px;
+    border: 10px solid black;
+    padding: 25px;
+}
+
+.Video iframe {
+    margin-bottom: 20px;
+}
+
+#question {
+    font-size: 90px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 60px;
+}
+
+#score {
+    width: fit-content;
+    top: 10px;
+    left: 10px;
+    text-align: left;
+    font-weight: bold;
+    border: 6px solid blue;
+    margin-bottom: 5px;
+}

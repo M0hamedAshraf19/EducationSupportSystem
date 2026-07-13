@@ -46,11 +46,11 @@ input[type='password'] {
 	font-size: 48px;
 }
 
-.Video {
+.video {
     font-weight: bold;
 }
 
-p.Video {
+p.video {
     width: 800px;
     margin-left: auto;
     margin-right: auto;
@@ -60,7 +60,7 @@ p.Video {
     padding: 25px;
 }
 
-.Video iframe {
+.video iframe {
     margin-bottom: 20px;
 }
 

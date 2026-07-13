@@ -105,7 +105,7 @@ if (getCookie('answer') === null) {
             <input type='submit' disabled value='مذكر'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type='submit' disabled value='مونث'/><br>
         </form><br>
-        <img src='../images/${name}' style='width: 50%; height: 50%;'>
+        <img src='../Images/${name}' style='width: 50%; height: 50%;'>
         `
     } else {
         el.innerHTML = `
@@ -113,7 +113,7 @@ if (getCookie('answer') === null) {
             <input type='submit' disabled value='مونث'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type='submit' disabled value='مذكر'/><br>
         </form><br>
-        <img src='../images/${name}' style='width: 50%; height: 50%;'>
+        <img src='../Images/${name}' style='width: 50%; height: 50%;'>
         `
     }
     el.querySelector('form').addEventListener('submit', function(e) {
@@ -132,7 +132,7 @@ if (getCookie('answer') === null) {
             <input type='submit' disabled value='هذا'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type='submit' disabled value='هذه'/><br>
         </form><br>
-        <img src='../images/${name}' style='width: 50%; height: 50%;'>
+        <img src='../Images/${name}' style='width: 50%; height: 50%;'>
         `
     } else {
         el.innerHTML = `
@@ -140,7 +140,7 @@ if (getCookie('answer') === null) {
             <input type='submit' disabled value='هذه'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type='submit' disabled value='هذا'/><br>
         </form><br>
-        <img src='../images/${name}' style='width: 50%; height: 50%;'>
+        <img src='../Images/${name}' style='width: 50%; height: 50%;'>
         `
     }
     el.querySelector('form').addEventListener('submit', function(e) {

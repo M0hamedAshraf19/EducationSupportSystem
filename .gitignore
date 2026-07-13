@@ -1,6 +1,0 @@
-.gitignore
-# VS Code workspace files
-.vscode/
-*.code-workspace
-tempCodeRunnerFile.*
-TODOLIST.md

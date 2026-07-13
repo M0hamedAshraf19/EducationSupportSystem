@@ -42,6 +42,10 @@ if (getCookie('questions') === null || getCookie('correct') === null) {
     {
         setCookie('correct', parseInt(getCookie('correct'))+1)
     }
+    else {
+        alert(`غلط!
+الاجابة هى: ${eval(getCookie('question').replace('×', '*'))}`)
+    }
     if (getCookie('question').indexOf('×') >= 0) {
         let multiplyNum0 = parseInt(getCookie('multiplyNum0'))
         let multiplyNum1 = parseInt(getCookie('multiplyNum1'))
@@ -67,7 +71,6 @@ if (getCookie('questions') === null || getCookie('correct') === null) {
 document.querySelector('#score').innerHTML = `
     Questions: ${getCookie('questions')}<br>Correct: ${getCookie('correct')}
 `
-document.querySelector('#score').style.display = 'block'
 
 let el = ''
 
@@ -108,7 +111,7 @@ if (getCookie('OPs') === null) {
         let OP = ''
         let num0 = 0
         let num1 = 0
-        if (getCookie('OP') === null || getCookie('num0') === null || getCookie('num1') === null) {
+        if (getCookie('question') === null) {
             OP = JSON.parse(getCookie('OPs'))[Math.floor(Math.random() * JSON.parse(getCookie('OPs')).length)]
             if (OP === '+') {
                 num0 = Math.floor(Math.random() * 10)
@@ -124,20 +127,13 @@ if (getCookie('OPs') === null) {
                 num0 = parseInt(getCookie('multiplyNum0'))
                 num1 = parseInt(getCookie('multiplyNum1'))
             }
-            setCookie('OP', OP)
-            setCookie('num0', num0)
-            setCookie('num1', num1)
-        } else {
-            OP = getCookie('OP')
-            num0 = getCookie('num0')
-            num1 = getCookie('num1')
+            setCookie('question', `${num0}${OP}${num1}`)
         }
-        el.querySelector('#question').textContent = `${num0} ${OP} ${num1}`
+        el.querySelector('#question').textContent = `${getCookie('question')}`
         el.querySelector('form').addEventListener('submit', function(e) {
             e.preventDefault()
             let answer = (el.querySelector("input[type='text']").value).trim()
             if (answer) {
-                setCookie('question', `${num0}${OP}${num1}`)
                 setCookie('answer', answer)
                 location.reload()
             } else {
@@ -147,6 +143,11 @@ if (getCookie('OPs') === null) {
     }
 }
 
-document.querySelectorAll("input[type='submit']").forEach(function(button) {
-    button.disabled = false
-})
+document.querySelector('#score').style.display = 'block'
+document.querySelector('#buttons').style.display = 'block'
+
+window.addEventListener("load", function() {
+    document.querySelectorAll("input[type='submit']").forEach(function(button) {
+        button.disabled = false;
+    });
+});

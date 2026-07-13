@@ -1,5 +1,5 @@
 body {
-    font-size: 30px;
+    font-size: 48px;
     text-align: center;
     font-family: Arial, sans-serif;
     background-color: #00fff2;
@@ -10,13 +10,13 @@ div {
 }
 
 h1 {
-    font-size: 80px;
+    font-size: 110px;
     margin-top: 10px;
     margin-bottom: 50px;
 }
 
 button {
-    font-size: 40px;
+    font-size: 48px;
     background-color: #1052e1;
     color: white;
     border: none;
@@ -71,12 +71,24 @@ p.Video {
     margin-bottom: 60px;
 }
 
+#typeOptions {
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+#typeOptions button{
+    font-size: 40px;
+    margin-top: 10px;
+}
+
 #score {
-    width: fit-content;
+    position: fixed;
     top: 10px;
     left: 10px;
     text-align: left;
     font-weight: bold;
     border: 6px solid blue;
-    margin-bottom: 5px;
+    padding: 5px;
 }

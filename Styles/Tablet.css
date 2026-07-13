@@ -71,6 +71,18 @@ p.Video {
     margin-bottom: 60px;
 }
 
+#typeOptions {
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+#typeOptions button{
+    font-size: 40px;
+    margin-top: 10px;
+}
+
 #score {
     width: fit-content;
     top: 10px;

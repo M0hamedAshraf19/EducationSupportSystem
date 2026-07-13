@@ -38,10 +38,140 @@ if (getCookie('questions') === null || getCookie('correct') === null) {
     deleteCookies()
     setCookie('questions', '0')
     setCookie('correct', '0')
-} else {}
+} else if (getCookie('answer') !== null) {
+    if (JSON.parse(getCookie('answer')).length === 1) {
+        let answer = JSON.parse(getCookie('answer'))[0]
+        let name = getCookie('question')
+        if (!((name[0] === 'M' && answer === 'مذكر') || (name[0] === 'F' && answer === 'مونث'))) {
+            if (answer == 'مذكر') {
+                alert(`غلط!
+الاجابة هى: مونث`)
+            } else {
+                alert(`غلط!
+الاجابة هى: مذكر`)
+            }
+            setCookie('questions', parseInt(getCookie('questions')) + 1)
+            setCookie('question', '', new Date(0))
+            setCookie('answer', '', new Date(0))
+        }
+    } else {
+        let answer = JSON.parse(getCookie('answer'))[1]
+        let name = getCookie('question')
+        setCookie('questions', parseInt(getCookie('questions'))+1)
+        setCookie('question', '', new Date(0))
+        setCookie('answer', '', new Date(0))
+        if ((name[0] === 'M' && answer === 'هذا') || (name[0] === 'F' && answer === 'هذه')) {
+            setCookie('correct', parseInt(getCookie('correct'))+1)
+        } else {
+            if (answer == 'هذا') {
+                alert(`غلط!
+الاجابة هى: هذه`)
+            } else {
+                alert(`غلط!
+الاجابة هى: هذا`)
+            }
+        }
+    }
+}
 
+if (getCookie('usedNames') === null) {
+    setCookie('usedNames', JSON.stringify([]))
+} else {
+    if (JSON.parse(getCookie('usedNames')).length === fileNames.length) {
+        setCookie('lastUsedName', JSON.parse(getCookie('usedNames'))[fileNames.length-1])
+        setCookie('usedNames', JSON.stringify([]))
+    }
+}
 
+document.querySelector('#score').innerHTML = `
+    Questions: ${getCookie('questions')}<br>Correct: ${getCookie('correct')}
+`
 
-document.querySelectorAll("input[type='submit']").forEach(function(button) {
-    button.disabled = false
+let el = ''
+
+if (getCookie('answer') === null) {
+    el = document.querySelector("#questionForm")
+    el.style.display = 'block'
+    let name = ''
+    if (getCookie('question') === null) {
+        name = fileNames[Math.floor(Math.random() * fileNames.length)]
+        let usedNames = JSON.parse(getCookie('usedNames'))
+        if (getCookie('lastUsedName') === null){
+            while (usedNames.includes(name)) {
+                name = fileNames[Math.floor(Math.random() * fileNames.length)]
+            }
+        } else {
+            while (getCookie('lastUsedName') === name) {
+                name = fileNames[Math.floor(Math.random() * fileNames.length)]
+            }
+            setCookie('lastUsedNmae', '', new Date(0))
+        }
+        setCookie('question', `${name}`)
+        usedNames.push(name)
+        setCookie('usedNames', JSON.stringify(usedNames))
+    }
+    else {
+        name = getCookie('question')
+    }
+    if (Math.floor(Math.random() * 2) === 0) {
+        el.querySelector('#typeOptions').innerHTML = `
+        <button>مذكر</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button>مونث</button><br><br>
+        <img src='../Images/${name}' style='width: 50%; height: 50%;'>
+        `
+    } else {
+        el.querySelector('#typeOptions').innerHTML = `
+        <button>مونث</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button>مذكر</button><br><br>
+        <img src='../Images/${name}' style='width: 50%; height: 50%;'>
+        `
+    }
+    el.querySelector('form').addEventListener('submit', function(e) {
+        e.preventDefault()
+        let answer = (el.querySelector("input[type='text']").value).trim()
+        if (answer) {
+            setCookie('answer', JSON.stringify([answer]))
+            location.reload()
+        } else {
+            alert('You have to write')
+        }
+    })
+} else {
+    el = document.querySelector("#questionForm")
+    el.style.display = 'block'
+    let name =  getCookie('question')
+    if (Math.floor(Math.random() * 2) === 0) {
+        el.querySelector('#typeOptions').innerHTML = `
+        <button>هذا</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button>هذه</button><br><br>
+        <img src='../Images/${name}' style='width: 50%; height: 50%;'>
+        `
+    } else {
+        el.querySelector('#typeOptions').innerHTML = `
+        <button>هذه</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button>هذا</button><br><br>
+        <img src='../Images/${name}' style='width: 50%; height: 50%;'>
+        `
+    }
+    el.querySelector('form').addEventListener('submit', function(e) {
+        e.preventDefault()
+        let newAnswer = (el.querySelector("input[type='text']").value).trim()
+        if (newAnswer) {
+            let answer = JSON.parse(getCookie('answer'))
+            answer.push(newAnswer)
+            setCookie('answer', JSON.stringify(answer))
+            location.reload()
+        } else {
+            alert('You have to write')
+        }
+    })
+}
+
+document.querySelector('#score').style.display = 'block'
+document.querySelector('#buttons').style.display = 'block'
+
+window.addEventListener("load", function() {    
+    document.querySelectorAll("input[type='submit']").forEach(function(button) {
+        button.disabled = false
+    })
 })

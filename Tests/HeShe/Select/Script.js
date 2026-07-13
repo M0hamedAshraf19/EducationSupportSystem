@@ -43,7 +43,14 @@ if (getCookie('questions') === null || getCookie('correct') === null) {
         let answer = JSON.parse(getCookie('answer'))[0]
         let name = getCookie('question')
         if (!((name[0] === 'M' && answer === 'مذكر') || (name[0] === 'F' && answer === 'مونث'))) {
-            setCookie('questions', parseInt(getCookie('questions'))+1)
+            if (answer == 'مذكر') {
+                alert(`غلط!
+الاجابة هى: مونث`)
+            } else {
+                alert(`غلط!
+الاجابة هى: مذكر`)
+            }
+            setCookie('questions', parseInt(getCookie('questions')) + 1)
             setCookie('question', '', new Date(0))
             setCookie('answer', '', new Date(0))
         }
@@ -55,6 +62,14 @@ if (getCookie('questions') === null || getCookie('correct') === null) {
         setCookie('answer', '', new Date(0))
         if ((name[0] === 'M' && answer === 'هذا') || (name[0] === 'F' && answer === 'هذه')) {
             setCookie('correct', parseInt(getCookie('correct'))+1)
+        } else {
+            if (answer == 'هذا') {
+                alert(`غلط!
+الاجابة هى: هذه`)
+            } else {
+                alert(`غلط!
+الاجابة هى: هذا`)
+            }
         }
     }
 }
@@ -71,7 +86,6 @@ if (getCookie('usedNames') === null) {
 document.querySelector('#score').innerHTML = `
     Questions: ${getCookie('questions')}<br>Correct: ${getCookie('correct')}
 `
-document.querySelector('#score').style.display = 'block'
 
 let el = ''
 
@@ -118,7 +132,7 @@ if (getCookie('answer') === null) {
     }
     el.querySelector('form').addEventListener('submit', function(e) {
         e.preventDefault()
-        let answer = document.querySelector("input[type='submit']:focus").value
+        let answer = el.querySelector("input[type='submit']:focus").value
         setCookie('answer', JSON.stringify([answer]))
         location.reload()
     })
@@ -146,12 +160,17 @@ if (getCookie('answer') === null) {
     el.querySelector('form').addEventListener('submit', function(e) {
         e.preventDefault()
         let answer = JSON.parse(getCookie('answer'))
-        answer.push(document.querySelector("input[type='submit']:focus").value)
+        answer.push(el.querySelector("input[type='submit']:focus").value)
         setCookie('answer', JSON.stringify(answer))
         location.reload()
     })
 }
 
-document.querySelectorAll("input[type='submit']").forEach(function(button) {
-    button.disabled = false
+document.querySelector('#score').style.display = 'block'
+document.querySelector('#buttons').style.display = 'block'
+
+window.addEventListener("load", function() {    
+    document.querySelectorAll("input[type='submit']").forEach(function(button) {
+        button.disabled = false
+    })
 })

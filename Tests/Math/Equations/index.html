@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Equations</title>
+        <meta charset=UTF-8>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <link rel='stylesheet' href='/EducationSupportSystem/Styles/Mobile.css' media='(max-width: 767px)'>
+        <link rel='stylesheet' href='/EducationSupportSystem/Styles/Tablet.css' media='(min-width: 768px) and (max-width: 1023px)'>
+        <link rel='stylesheet' href='/EducationSupportSystem/Styles/Desktop.css' media='(min-width: 1024px)'>
+        <link type='image/x-icon' rel='icon' href='/EducationSupportSystem/Favicon.ico'>
+        <link rel='manifest' href='/EducationSupportSystem/Manifest.json'>
+    </head>
+    <body>
+        <div id='score'></div>
+
+        <div id='chooseOP'>
+            <b>Choose the operation(s)</b><br>
+            <form method='post'>
+                <input type='checkbox' name='OPs[]' value='+'>+<br>
+                <input type='checkbox' name='OPs[]' value='-'>-&nbsp;<br>
+                <input type='checkbox' name='OPs[]' value='×'>×<br><br>
+                <input type='submit' disabled name = 'OPsChoosen' value='Ok'/>
+            </form>
+        </div>
+
+        <div id='setMultiplication'>
+            <form method='post'>
+                <b>Start multiplication from</b><br>
+                <select name=multiplyBegin>
+                    <option value='1' selected>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                    <option value='4'>4</option>
+                    <option value='5'>5</option>
+                    <option value='6'>6</option>
+                    <option value='7'>7</option>
+                    <option value='8'>8</option>
+                    <option value='9'>9</option>
+                </select><br>
+                <b>End it at</b><br>
+                <select name=multiplyEnd>
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                    <option value='4'>4</option>
+                    <option value='5'>5</option>
+                    <option value='6'>6</option>
+                    <option value='7'>7</option>
+                    <option value='8'>8</option>
+                    <option value='9' selected>9</option>
+                </select><br><br>
+                <input type='submit' disabled name = 'Answered' value='Ok'/>
+            </form>
+        </div>
+
+        <div id = 'questionForm'>
+            <p id='question'></p>
+            <form method='post'>
+                <input type='text' name='answer' size='5' autocomplete='off' id =answer><br><br>
+                <input type='submit' disabled name = 'Answered' value='Ok'/>
+            </form>
+        </div><br>
+
+        <div id = 'buttons'>
+            <a href='../index.html'><button>Tests</button></a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button id='reset'>Reset</button>
+        </div>
+
+        <script src='Script.js'></script>
+    </body>
+</html>

@@ -42,7 +42,6 @@ if (request.status === 200) {
 } else {
     console.error('Error loading JSON:', request.status);
 }
-console.log(fileNames)
 
 if (getCookie('questions') === null || getCookie('correct') === null) {
     deleteCookies()
@@ -123,7 +122,6 @@ if (getCookie('answer') === null) {
     else {
         name = getCookie('question')
     }
-    console.log(name)
     if (Math.floor(Math.random() * 2) === 0) {
         el.innerHTML = `
         <form method='post'>

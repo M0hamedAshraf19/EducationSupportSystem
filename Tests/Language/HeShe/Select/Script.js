@@ -34,7 +34,7 @@ document.querySelector('#reset').addEventListener('click', function() {
 
 
 const request = new XMLHttpRequest();
-request.open('GET', '../../images.json', false);
+request.open('GET', '../../Images.json', false);
 request.send(null);
 fileNames = [];
 if (request.status === 200) {

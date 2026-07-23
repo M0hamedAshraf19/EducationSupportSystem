@@ -123,7 +123,7 @@ if (getCookie('answer') === null) {
     else {
         name = getCookie('question')
     }
-    console.log(names)
+    console.log(name)
     if (Math.floor(Math.random() * 2) === 0) {
         el.innerHTML = `
         <form method='post'>

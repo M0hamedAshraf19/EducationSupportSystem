@@ -32,14 +32,13 @@ document.querySelector('#reset').addEventListener('click', function() {
     location.href = '..\\index.html'
 })
 
-
 const request = new XMLHttpRequest();
 request.open('GET', '../../images.json', false);
 request.send(null);
 
 fileNames = [];
 if (request.status === 200) {
-    fileNames = JSON.parse(request.responseText).heShe;
+    fileNames = JSON.parse(request.responseText).double;
 } else {
     console.error('Error loading JSON:', request.status);
 }
@@ -124,55 +123,56 @@ if (getCookie('answer') === null) {
         name = getCookie('question')
     }
     if (Math.floor(Math.random() * 2) === 0) {
-        el.innerHTML = `
-        <form method='post'>
-            <input type='submit' disabled value='مذكر'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type='submit' disabled value='مونث'/><br>
-        </form><br>
+        el.querySelector('#typeOptions').innerHTML = `
+        <button>مذكر</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;او&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button>مونث</button><br><br>
         <img src='../Images/${name}' style='width: 50%; max-height: 450px; object-fit: contain;'>
         `
     } else {
-        el.innerHTML = `
-        <form method='post'>
-            <input type='submit' disabled value='مونث'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type='submit' disabled value='مذكر'/><br>
-        </form><br>
+        el.querySelector('#typeOptions').innerHTML = `
+        <button>مونث</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;او&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button>مذكر</button><br><br>
         <img src='../Images/${name}' style='width: 50%; max-height: 450px; object-fit: contain;'>
         `
     }
     el.querySelector('form').addEventListener('submit', function(e) {
         e.preventDefault()
-        let answer = el.querySelector("input[type='submit']:focus").value
-        setCookie('answer', JSON.stringify([answer]))
-        location.reload()
+        let answer = (el.querySelector("input[type='text']").value).trim()
+        if (answer) {
+            setCookie('answer', JSON.stringify([answer]))
+            location.reload()
+        } else {
+            alert('عليك أن تكتب')
+        }
     })
 } else {
     el = document.querySelector("#questionForm")
     el.style.display = 'block'
     let name =  getCookie('question')
     if (Math.floor(Math.random() * 2) === 0) {
-        el.innerHTML = `
-        <form method='post'>
-            <input type='submit' disabled value='هذا'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type='submit' disabled value='هذه'/><br>
-        </form><br>
+        el.querySelector('#typeOptions').innerHTML = `
+        <button>هذا</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;او&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button>هذه</button><br><br>
         <img src='../Images/${name}' style='width: 50%; max-height: 450px; object-fit: contain;'>
         `
     } else {
-        el.innerHTML = `
-        <form method='post'>
-            <input type='submit' disabled value='هذه'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type='submit' disabled value='هذا'/><br>
-        </form><br>
+        el.querySelector('#typeOptions').innerHTML = `
+        <button>هذه</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;او&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button>هذا</button><br><br>
         <img src='../Images/${name}' style='width: 50%; max-height: 450px; object-fit: contain;'>
         `
     }
     el.querySelector('form').addEventListener('submit', function(e) {
         e.preventDefault()
-        let answer = JSON.parse(getCookie('answer'))
-        answer.push(el.querySelector("input[type='submit']:focus").value)
-        setCookie('answer', JSON.stringify(answer))
-        location.reload()
+        let newAnswer = (el.querySelector("input[type='text']").value).trim()
+        if (newAnswer) {
+            let answer = JSON.parse(getCookie('answer'))
+            answer.push(newAnswer)
+            setCookie('answer', JSON.stringify(answer))
+            location.reload()
+        } else {
+            alert('عليك أن تكتب')
+        }
     })
 }
 

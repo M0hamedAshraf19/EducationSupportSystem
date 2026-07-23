@@ -32,7 +32,16 @@ document.querySelector('#reset').addEventListener('click', function() {
     location.href = '..\\index.html'
 })
 
-const fileNames = ["F-Airplane.jpeg", "F-Ball.png", "F-Butterfly.jpg", "F-Car.png", "F-Cat.jpg", "F-Clock.jpeg", "F-Duck.jpg", "F-Eagles.png", "F-Eyes.jpg", "F-Flower.jpg", "F-Giraffe.jpg", "F-Girl.png", "F-Keys.jpg", "F-Onion.jpg", "F-Parrots.jpg", "F-Pencils.jpg", "F-Sun.jpg", "F-Teeth.png", "F-Tree.jpg", "M-Alarm Clock.jpg", "M-Bird.jpg", "M-Book.jpg", "M-Box.jpg", "M-Boy.png", "M-Computer.jpg", "M-Desk.jpg", "M-Dog.jpg", "M-Eagle.png", "M-Elephant.jpg", "M-Horse.jpg", "M-Key.jpg", "M-Lion.jpg", "M-Monkey.jpg", "M-Moon.jpg", "M-Pencil.jpg", "M-Sheep.jpg", "M-Whale.jpg"]
+const request = new XMLHttpRequest();
+request.open('GET', '../../images.json', false);
+request.send(null);
+
+fileNames = [];
+if (request.status === 200) {
+    fileNames = JSON.parse(request.responseText).heShe;
+} else {
+    console.error('Error loading JSON:', request.status);
+}
 
 if (getCookie('questions') === null || getCookie('correct') === null) {
     deleteCookies()

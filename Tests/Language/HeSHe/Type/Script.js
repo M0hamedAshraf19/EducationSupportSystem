@@ -32,7 +32,16 @@ document.querySelector('#reset').addEventListener('click', function() {
     location.href = '..\\index.html'
 })
 
-const fileNames = ["F-Airplane.jpeg", "F-Ball.png", "F-Butterfly.jpg", "F-Car.png", "F-Cat.jpg", "F-Clock.jpeg", "F-Duck.jpg", "F-Eagles.png", "F-Eyes.jpg", "F-Flower.jpg", "F-Giraffe.jpg", "F-Girl.png", "F-Keys.jpg", "F-Onion.jpg", "F-Parrots.jpg", "F-Pencils.jpg", "F-Sun.jpg", "F-Teeth.png", "F-Tree.jpg", "M-Alarm Clock.jpg", "M-Bird.jpg", "M-Book.jpg", "M-Box.jpg", "M-Boy.png", "M-Computer.jpg", "M-Desk.jpg", "M-Dog.jpg", "M-Eagle.png", "M-Elephant.jpg", "M-Horse.jpg", "M-Key.jpg", "M-Lion.jpg", "M-Monkey.jpg", "M-Moon.jpg", "M-Pencil.jpg", "M-Sheep.jpg", "M-Whale.jpg"]
+const request = new XMLHttpRequest();
+request.open('GET', '../../images.json', false);
+request.send(null);
+
+fileNames = [];
+if (request.status === 200) {
+    fileNames = JSON.parse(request.responseText).heShe;
+} else {
+    console.error('Error loading JSON:', request.status);
+}
 
 if (getCookie('questions') === null || getCookie('correct') === null) {
     deleteCookies()
@@ -115,15 +124,15 @@ if (getCookie('answer') === null) {
     }
     if (Math.floor(Math.random() * 2) === 0) {
         el.querySelector('#typeOptions').innerHTML = `
-        <button>مذكر</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button>مذكر</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;او&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button>مونث</button><br><br>
-        <img src='../Images/${name}' style='width: 50%; height: 50%;'>
+        <img src='../Images/${name}' style='width: 50%; max-height: 450px; object-fit: contain;'>
         `
     } else {
         el.querySelector('#typeOptions').innerHTML = `
-        <button>مونث</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button>مونث</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;او&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button>مذكر</button><br><br>
-        <img src='../Images/${name}' style='width: 50%; height: 50%;'>
+        <img src='../Images/${name}' style='width: 50%; max-height: 450px; object-fit: contain;'>
         `
     }
     el.querySelector('form').addEventListener('submit', function(e) {
@@ -133,7 +142,7 @@ if (getCookie('answer') === null) {
             setCookie('answer', JSON.stringify([answer]))
             location.reload()
         } else {
-            alert('You have to write')
+            alert('عليك أن تكتب')
         }
     })
 } else {
@@ -142,15 +151,15 @@ if (getCookie('answer') === null) {
     let name =  getCookie('question')
     if (Math.floor(Math.random() * 2) === 0) {
         el.querySelector('#typeOptions').innerHTML = `
-        <button>هذا</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button>هذا</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;او&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button>هذه</button><br><br>
-        <img src='../Images/${name}' style='width: 50%; height: 50%;'>
+        <img src='../Images/${name}' style='width: 50%; max-height: 450px; object-fit: contain;'>
         `
     } else {
         el.querySelector('#typeOptions').innerHTML = `
-        <button>هذه</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button>هذه</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;او&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button>هذا</button><br><br>
-        <img src='../Images/${name}' style='width: 50%; height: 50%;'>
+        <img src='../Images/${name}' style='width: 50%; max-height: 450px; object-fit: contain;'>
         `
     }
     el.querySelector('form').addEventListener('submit', function(e) {

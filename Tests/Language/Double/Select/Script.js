@@ -32,14 +32,13 @@ document.querySelector('#reset').addEventListener('click', function() {
     location.href = '..\\index.html'
 })
 
-
 const request = new XMLHttpRequest();
 request.open('GET', '../../images.json', false);
 request.send(null);
 
 fileNames = [];
 if (request.status === 200) {
-    fileNames = JSON.parse(request.responseText).heShe;
+    fileNames = JSON.parse(request.responseText).double;
 } else {
     console.error('Error loading JSON:', request.status);
 }

@@ -162,7 +162,7 @@ if (getCookie('answer') === null) {
             setCookie('answer', JSON.stringify(answer))
             location.reload()
         } else {
-            alert('You have to write')
+            alert('عليك أن تكتب')
         }
     })
 }

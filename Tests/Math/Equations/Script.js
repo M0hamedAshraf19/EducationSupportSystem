@@ -85,7 +85,7 @@ if (getCookie('OPs') === null) {
             selectedOPs.push(checkbox.value)
         })
         if (selectedOPs.length === 0) {
-            alert('You have to choose')
+            alert('عليك أن تختار')
             return
         }
         setCookie('OPs', JSON.stringify(selectedOPs))
@@ -137,7 +137,7 @@ if (getCookie('OPs') === null) {
                 setCookie('answer', answer)
                 location.reload()
             } else {
-                alert('You have to write')
+                alert('عليك أن تكتب')
             }
         })
     }

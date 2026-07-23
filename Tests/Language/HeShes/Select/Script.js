@@ -36,13 +36,13 @@ document.querySelector('#reset').addEventListener('click', function() {
 const request = new XMLHttpRequest();
 request.open('GET', '../../images.json', false);
 request.send(null);
-
 fileNames = [];
 if (request.status === 200) {
     fileNames = JSON.parse(request.responseText).heShe;
 } else {
     console.error('Error loading JSON:', request.status);
 }
+console.log(fileNames)
 
 if (getCookie('questions') === null || getCookie('correct') === null) {
     deleteCookies()

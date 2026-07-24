@@ -17,13 +17,13 @@ div {
 }
 
 h1 {
-    font-size: 80px;
+    font-size: 70px;
     margin-top: 10px;
     margin-bottom: 50px;
 }
 
 button {
-    font-size: 25px;
+    font-size: 30px;
     background-color: #1052e1;
     color: white;
     border: none;
@@ -89,7 +89,7 @@ p.video {
 }
 
 #typeOptions button{
-    font-size: 40px;
+    font-size: 30px;
     margin-top: 10px;
 }
 

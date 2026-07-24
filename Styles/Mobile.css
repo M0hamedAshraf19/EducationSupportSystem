@@ -23,7 +23,7 @@ h1 {
 }
 
 button {
-    font-size: 40px;
+    font-size: 30px;
     background-color: #1052e1;
     color: white;
     border: none;
@@ -33,24 +33,24 @@ button {
 }
 
 input[type='checkbox'] {
-	width: 32px;
-	height: 32px;
+	width: 14px;
+	height: 14px;
 }
 
 input[type='submit'] {
-	font-size: 35px;
+	font-size: 17px;
 }
 
 select {
-	font-size: 48px;
+	font-size: 30px;
 }
 
 input[type='text'] {
-	font-size: 38px;
+	font-size: 26px;
 }
 
 input[type='password'] {
-	font-size: 48px;
+	font-size: 30px;
 }
 
 .video {
@@ -58,7 +58,7 @@ input[type='password'] {
 }
 
 p.video {
-    width: 800px;
+    width: 500px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 0px;
@@ -69,8 +69,8 @@ p.video {
 
 .video iframe {
     margin-bottom: 20px;
-    width: 560px;
-    height: 315px;
+    width: 360px;
+    height: 115px;
     border: none;
 }
 

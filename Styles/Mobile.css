@@ -64,13 +64,13 @@ p.video {
     margin-top: 0px;
     margin-bottom: 25px;
     border: 10px solid black;
-    padding: 25px;
+    padding: 10px;
 }
 
 .video iframe {
     margin-bottom: 20px;
-    width: 10px;
-    height: 10px;
+    width: 100px;
+    height: 100px;
     border: none;
 }
 

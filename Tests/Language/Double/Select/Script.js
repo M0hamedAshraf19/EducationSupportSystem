@@ -1,13 +1,13 @@
 function getCookie(name) {
-    const cookie = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'))
+    const cookie=document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'))
     return cookie ? cookie[2] : null;
 }
 
-function setCookie(name, value, expires = null) {
+function setCookie(name, value, expires=null) {
     if (expires) {
-        document.cookie = `${name}=${value}; expires=${expires.toUTCString()}; path=${window.location.pathname}`
+        document.cookie=`${name}=${value}; expires=${expires.toUTCString()}; path=${window.location.pathname}`
     } else {
-        document.cookie = `${name}=${value}; path=${window.location.pathname}`
+        document.cookie=`${name}=${value}; path=${window.location.pathname}`
     }
 }
 
@@ -26,19 +26,19 @@ function deleteCookies() {
 
 document.querySelector('#reset').addEventListener('click', function() {
     deleteCookies()
-    document.querySelectorAll("form").forEach(function(form) {
+    document.querySelectorAll('form').forEach(function(form) {
         form.reset()
     })
-    location.href = '..\\index.html'
+    location.href='..//index.html'
 })
 
-const request = new XMLHttpRequest();
+const request=new XMLHttpRequest();
 request.open('GET', '../../Images.json', false);
 request.send(null);
 
-fileNames = [];
+fileNames=[];
 if (request.status === 200) {
-    fileNames = JSON.parse(request.responseText).double;
+    fileNames=JSON.parse(request.responseText).double;
 } else {
     console.error('Error loading JSON:', request.status);
 }
@@ -49,8 +49,8 @@ if (getCookie('questions') === null || getCookie('correct') === null) {
     setCookie('correct', '0')
 } else if (getCookie('answer') !== null) {
     if (JSON.parse(getCookie('answer')).length === 1) {
-        let answer = JSON.parse(getCookie('answer'))[0]
-        let name = getCookie('question')
+        let answer=JSON.parse(getCookie('answer'))[0]
+        let name=getCookie('question')
         if (!((name[0] === 'M' && answer === 'مثنى مذكر') || (name[0] === 'F' && answer === 'مثنى مونث'))) {
             if (answer == 'مثنى مذكر') {
                 alert(`غلط!
@@ -64,8 +64,8 @@ if (getCookie('questions') === null || getCookie('correct') === null) {
             setCookie('answer', '', new Date(0))
         }
     } else {
-        let answer = JSON.parse(getCookie('answer'))[1]
-        let name = getCookie('question')
+        let answer=JSON.parse(getCookie('answer'))[1]
+        let name=getCookie('question')
         setCookie('questions', parseInt(getCookie('questions'))+1)
         setCookie('question', '', new Date(0))
         setCookie('answer', '', new Date(0))
@@ -92,26 +92,26 @@ if (getCookie('usedNames') === null) {
     }
 }
 
-document.querySelector('#score').innerHTML = `
+document.querySelector('#score').innerHTML=`
     Questions: ${getCookie('questions')}<br>Correct: ${getCookie('correct')}
 `
 
-let el = ''
+let el=''
 
 if (getCookie('answer') === null) {
-    el = document.querySelector("#questionForm")
-    el.style.display = 'block'
-    let name = ''
+    el=document.querySelector('#questionForm')
+    el.style.display='block'
+    let name=''
     if (getCookie('question') === null) {
-        name = fileNames[Math.floor(Math.random() * fileNames.length)]
-        let usedNames = JSON.parse(getCookie('usedNames'))
+        name=fileNames[Math.floor(Math.random() * fileNames.length)]
+        let usedNames=JSON.parse(getCookie('usedNames'))
         if (getCookie('lastUsedName') === null){
             while (usedNames.includes(name)) {
-                name = fileNames[Math.floor(Math.random() * fileNames.length)]
+                name=fileNames[Math.floor(Math.random() * fileNames.length)]
             }
         } else {
             while (getCookie('lastUsedName') === name) {
-                name = fileNames[Math.floor(Math.random() * fileNames.length)]
+                name=fileNames[Math.floor(Math.random() * fileNames.length)]
             }
             setCookie('lastUsedNmae', '', new Date(0))
         }
@@ -120,10 +120,10 @@ if (getCookie('answer') === null) {
         setCookie('usedNames', JSON.stringify(usedNames))
     }
     else {
-        name = getCookie('question')
+        name=getCookie('question')
     }
     if (Math.floor(Math.random() * 2) === 0) {
-        el.innerHTML = `
+        el.innerHTML=`
         <form method='post'>
             <input type='submit' disabled value='مثنى مذكر'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type='submit' disabled value='مثنى مونث'/><br>
@@ -131,7 +131,7 @@ if (getCookie('answer') === null) {
         <img src='../Images/${name}' style='width: 50%; max-height: 450px; object-fit: contain;'>
         `
     } else {
-        el.innerHTML = `
+        el.innerHTML=`
         <form method='post'>
             <input type='submit' disabled value='مثنى مونث'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type='submit' disabled value='مثنى مذكر'/><br>
@@ -141,16 +141,16 @@ if (getCookie('answer') === null) {
     }
     el.querySelector('form').addEventListener('submit', function(e) {
         e.preventDefault()
-        let answer = el.querySelector("input[type='submit']:focus").value
+        let answer=el.querySelector("input[type='submit']:focus").value
         setCookie('answer', JSON.stringify([answer]))
         location.reload()
     })
 } else {
-    el = document.querySelector("#questionForm")
-    el.style.display = 'block'
-    let name =  getCookie('question')
+    el=document.querySelector('#questionForm')
+    el.style.display='block'
+    let name= getCookie('question')
     if (Math.floor(Math.random() * 2) === 0) {
-        el.innerHTML = `
+        el.innerHTML=`
         <form method='post'>
             <input type='submit' disabled value='هذان'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type='submit' disabled value='هاتان'/><br>
@@ -158,7 +158,7 @@ if (getCookie('answer') === null) {
         <img src='../Images/${name}' style='width: 50%; max-height: 450px; object-fit: contain;'>
         `
     } else {
-        el.innerHTML = `
+        el.innerHTML=`
         <form method='post'>
             <input type='submit' disabled value='هاتان'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type='submit' disabled value='هذان'/><br>
@@ -168,18 +168,18 @@ if (getCookie('answer') === null) {
     }
     el.querySelector('form').addEventListener('submit', function(e) {
         e.preventDefault()
-        let answer = JSON.parse(getCookie('answer'))
+        let answer=JSON.parse(getCookie('answer'))
         answer.push(el.querySelector("input[type='submit']:focus").value)
         setCookie('answer', JSON.stringify(answer))
         location.reload()
     })
 }
 
-document.querySelector('#score').style.display = 'block'
-document.querySelector('#buttons').style.display = 'block'
+document.querySelector('#score').style.display='block'
+document.querySelector('#buttons').style.display='block'
 
-window.addEventListener("load", function() {    
+window.addEventListener('load', function() {    
     document.querySelectorAll("input[type='submit']").forEach(function(button) {
-        button.disabled = false
+        button.disabled=false
     })
 })

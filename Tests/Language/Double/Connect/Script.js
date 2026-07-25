@@ -1,13 +1,13 @@
 function getCookie(name) {
-    const cookie = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'))
+    const cookie=document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'))
     return cookie ? cookie[2] : null;
 }
 
-function setCookie(name, value, expires = null) {
+function setCookie(name, value, expires=null) {
     if (expires) {
-        document.cookie = `${name}=${value}; expires=${expires.toUTCString()}; path=${window.location.pathname}`
+        document.cookie=`${name}=${value}; expires=${expires.toUTCString()}; path=${window.location.pathname}`
     } else {
-        document.cookie = `${name}=${value}; path=${window.location.pathname}`
+        document.cookie=`${name}=${value}; path=${window.location.pathname}`
     }
 }
 
@@ -26,19 +26,19 @@ function deleteCookies() {
 
 document.querySelector('#reset').addEventListener('click', function() {
     deleteCookies()
-    document.querySelectorAll("form").forEach(function(form) {
+    document.querySelectorAll('form').forEach(function(form) {
         form.reset()
     })
-    location.href = '..\\index.html'
+    location.href='..//index.html'
 })
 
-const request = new XMLHttpRequest();
+const request=new XMLHttpRequest();
 request.open('GET', '../../Images.json', false);
 request.send(null);
 
-fileNames = [];
+fileNames=[];
 if (request.status === 200) {
-    fileNames = JSON.parse(request.responseText).double;
+    fileNames=JSON.parse(request.responseText).double;
 } else {
     console.error('Error loading JSON:', request.status);
 }
@@ -52,5 +52,5 @@ if (getCookie('questions') === null || getCookie('correct') === null) {
 
 
 document.querySelectorAll("input[type='submit']").forEach(function(button) {
-    button.disabled = false
+    button.disabled=false
 })

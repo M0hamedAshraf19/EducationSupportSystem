@@ -1,15 +1,12 @@
 html {
-    overflow: hidden;
-    height: 100%;
+    background-color: #00fff2;
 }
 
 body {
-    overflow: auto;
-    height: 100%;
     font-size: 30px;
     text-align: center;
     font-family: Arial, sans-serif;
-    background-color: #00fff2;
+    padding-bottom: 20px;
 }
 
 div {

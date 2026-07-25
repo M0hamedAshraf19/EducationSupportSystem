@@ -29,7 +29,7 @@ document.querySelector('#reset').addEventListener('click', function() {
     document.querySelectorAll('form').forEach(function(form) {
         form.reset()
     })
-    location.href='..//index.html'
+    location.href='../index.html'
 })
 
 const request=new XMLHttpRequest();

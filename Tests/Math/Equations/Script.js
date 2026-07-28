@@ -44,7 +44,7 @@ if (getCookie('questions') === null || getCookie('correct') === null) {
     }
     else {
         alert(`غلط!
-الاجابة هى: ${eval(getCookie('question').replace('×', '*'))}`)
+الاجابة هى: \u202A${getCookie('question')} = ${eval(getCookie('question').replace('×', '*'))}\u202C`)
     }
     if (getCookie('question').indexOf('×') >= 0) {
         let multiplyNum0=parseInt(getCookie('multiplyNum0'))

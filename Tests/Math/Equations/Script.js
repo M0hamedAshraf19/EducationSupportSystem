@@ -110,19 +110,21 @@ if (getCookie('OPs') === null) {
         el.style.display='block'
         let OP=''
         let num0=0
-        let num1=0
+        let num1=[]
         if (getCookie('question') === null) {
             OP=JSON.parse(getCookie('OPs'))[Math.floor(Math.random() * JSON.parse(getCookie('OPs')).length)]
             if (OP === '+') {
-                num0=Math.floor(Math.random() * 10)
-                if (num0 === 0) {
-                    num1=Math.floor(Math.random() * 10)
-                } else {
-                    num1=Math.floor(Math.random() * (11-num0))
-                }
+                let l = Math.floor(Math.random() * 3) + 1
+                num0 = Array.from({ length: l }, (_, i) => l > 1 && i === 0 ? Math.floor(Math.random()*8)+1 : Math.floor(Math.random()*10));
+                num0.forEach((n, i) => l > 1 && i === 0 ? num1.push(Math.floor(Math.random()*(9-n))+1) : num1.push(Math.floor(Math.random()*(10-n))));
+                num0 = parseInt(num0.join(""), 10);
+                num1 = parseInt(num1.join(""), 10)
             } else if (OP === '-') {
-                num0=Math.floor(Math.random() * 10)
-                num1=Math.floor(Math.random() * (num0+1))
+                let l = Math.floor(Math.random() * 3) + 1
+                num0 = Array.from({ length: l }, (_, i) => l > 1 && i === 0 ? Math.floor(Math.random()*9)+1 : Math.floor(Math.random()*10));
+                num0.forEach((n, i) => l > 1 && i === 0 ? num1.push(Math.floor(Math.random()*n)+1) : num1.push(Math.floor(Math.random()*(n+1))));
+                num0 = parseInt(num0.join(""), 10);
+                num1 = parseInt(num1.join(""), 10)
             } else {
                 num0=parseInt(getCookie('multiplyNum0'))
                 num1=parseInt(getCookie('multiplyNum1'))

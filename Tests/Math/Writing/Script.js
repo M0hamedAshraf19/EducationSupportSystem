@@ -95,8 +95,6 @@ el.style.display='block'
 
 if (getCookie('question') === null) {
     setCookie('question', `${nums[Math.floor(Math.random()*nums.length)]}`)
-    console.log(getCookie('question'))
-    console.log(nums[Math.floor(Math.random()*nums.length)])
 }
 el.querySelector('#question').textContent=`${getCookie('question')}`
 el.querySelector('form').addEventListener('submit', function(e) {

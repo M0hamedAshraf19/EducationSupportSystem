@@ -50,7 +50,7 @@ if (getCookie('questions') === null || getCookie('correct') === null) {
         let multiplyNum0=parseInt(getCookie('multiplyNum0'))
         let multiplyNum1=parseInt(getCookie('multiplyNum1'))
         if (multiplyNum1 < 9) {
-            multiplyNum1 += 1
+            multiplyNum1+=1
         } else {
             multiplyNum1=0
             if (multiplyNum0 < parseInt(getCookie('multiplyEnd'))) {
@@ -64,14 +64,11 @@ if (getCookie('questions') === null || getCookie('correct') === null) {
     }
     setCookie('question', '', new Date(0))
     setCookie('answer', '', new Date(0))
-    setCookie('num0', '', new Date(0))
-    setCookie('num1', '', new Date(0))
 }
 
 document.querySelector('#score').innerHTML=`
     Questions: ${getCookie('questions')}<br>Correct: ${getCookie('correct')}
 `
-
 let el=''
 
 if (getCookie('OPs') === null) {

@@ -88,7 +88,6 @@ document.querySelector('#score').innerHTML=`
 `
 
 let nums = Object.keys(d);
-console.log(nums);
 let el=''
 el=document.querySelector('#questionForm')
 el.style.display='block'

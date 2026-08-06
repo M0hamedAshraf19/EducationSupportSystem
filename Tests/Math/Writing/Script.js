@@ -110,6 +110,8 @@ el.querySelector('form').addEventListener('submit', function(e) {
 document.querySelector('#score').style.display='block'
 document.querySelector('#buttons').style.display='block'
 
+document.getElementById('answer').focus();
+
 window.addEventListener('load', function() {
     document.querySelectorAll("input[type='submit']").forEach(function(button) {
         button.disabled=false;

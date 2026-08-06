@@ -52,12 +52,12 @@ if (getCookie('questions') === null || getCookie('correct') === null) {
         let answer=JSON.parse(getCookie('answer'))[0]
         let name=getCookie('question')
         if (!((name[0] === 'M' && answer === 'مذكر') || (name[0] === 'F' && answer === 'مونث'))) {
-            if (answer == 'مذكر') {
-                alert(`غلط!
-الاجابة هى: مونث`)
-            } else {
+            if (name[0] === 'M') {
                 alert(`غلط!
 الاجابة هى: مذكر`)
+            } else {
+                alert(`غلط!
+الاجابة هى: مونث`)
             }
             setCookie('questions', parseInt(getCookie('questions')) + 1)
             setCookie('question', '', new Date(0))
@@ -72,12 +72,12 @@ if (getCookie('questions') === null || getCookie('correct') === null) {
         if ((name[0] === 'M' && answer === 'هذا') || (name[0] === 'F' && answer === 'هذه')) {
             setCookie('correct', parseInt(getCookie('correct'))+1)
         } else {
-            if (answer == 'هذا') {
-                alert(`غلط!
-الاجابة هى: هذه`)
-            } else {
+            if (name[0] === 'M') {
                 alert(`غلط!
 الاجابة هى: هذا`)
+            } else {
+                alert(`غلط!
+الاجابة هى: هذه`)
             }
         }
     }

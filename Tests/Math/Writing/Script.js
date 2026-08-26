@@ -65,7 +65,7 @@ document.querySelector('#reset').addEventListener('click', function() {
     location.href='../index.html'
 })
 
-if (getCookie('questions') === null || getCookie('correct') === null) {
+if (getCookie('questions') === null) {
     deleteCookies()
     setCookie('questions', 0)
     setCookie('correct', 0)

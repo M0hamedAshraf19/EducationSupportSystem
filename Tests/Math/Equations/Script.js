@@ -32,11 +32,12 @@ document.querySelector('#reset').addEventListener('click', function() {
     location.href='../index.html'
 })
 
-if (getCookie('questions') === null || getCookie('correct') === null) {
+if (getCookie('questions') === null) {
     deleteCookies()
     setCookie('questions', 0)
     setCookie('correct', 0)
 } else if (getCookie('answer') !== null) {
+    alert(getCookie('answer'))
     setCookie('questions', parseInt(getCookie('questions'))+1)
     if (getCookie('answer') == eval(getCookie('question').replace('×', '*')))
     {
@@ -106,7 +107,7 @@ if (getCookie('OPs') === null) {
         el=document.querySelector('#questionForm')
         el.style.display='block'
         let OP=''
-        let num0=0
+        let num0=[]
         let num1=[]
         if (getCookie('question') === null) {
             OP=JSON.parse(getCookie('OPs'))[Math.floor(Math.random() * JSON.parse(getCookie('OPs')).length)]
@@ -114,13 +115,13 @@ if (getCookie('OPs') === null) {
                 let l = Math.floor(Math.random() * 3) + 1
                 num0 = Array.from({ length: l }, (_, i) => l > 1 && i === 0 ? Math.floor(Math.random()*8)+1 : Math.floor(Math.random()*10));
                 num0.forEach((n, i) => l > 1 && i === 0 ? num1.push(Math.floor(Math.random()*(9-n))+1) : num1.push(Math.floor(Math.random()*(10-n))));
-                num0 = parseInt(num0.join(""), 10);
+                num0 = parseInt(num0.join(""), 10)
                 num1 = parseInt(num1.join(""), 10)
             } else if (OP === '-') {
                 let l = Math.floor(Math.random() * 3) + 1
                 num0 = Array.from({ length: l }, (_, i) => l > 1 && i === 0 ? Math.floor(Math.random()*9)+1 : Math.floor(Math.random()*10));
-                num0.forEach((n, i) => l > 1 && i === 0 ? num1.push(Math.floor(Math.random()*n)+1) : num1.push(Math.floor(Math.random()*(n+1))));
-                num0 = parseInt(num0.join(""), 10);
+                num0.forEach((n, i) => l > 1 && i === 0 ? num1.push(Math.floor(Math.random()*(n-1))+1) : num1.push(Math.floor(Math.random()*(n+1))));
+                num0 = parseInt(num0.join(""), 10)
                 num1 = parseInt(num1.join(""), 10)
             } else {
                 num0=parseInt(getCookie('multiplyNum0'))
@@ -151,4 +152,13 @@ window.addEventListener('load', function() {
     document.querySelectorAll("input[type='submit']").forEach(function(button) {
         button.disabled=false;
     });
+});
+
+const inp = document.getElementById('answer')
+inp.addEventListener('beforeinput', (e) => {
+if (e.inputType === 'insertText') {
+    e.preventDefault();
+    inp.value = e.data + inp.value;
+    inp.setSelectionRange(0, 0);
+  }
 });

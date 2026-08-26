@@ -43,7 +43,7 @@ if (request.status === 200) {
     console.error('Error loading JSON:', request.status);
 }
 
-if (getCookie('questions') === null || getCookie('correct') === null) {
+if (getCookie('questions') === null) {
     deleteCookies()
     setCookie('questions', '0')
     setCookie('correct', '0')

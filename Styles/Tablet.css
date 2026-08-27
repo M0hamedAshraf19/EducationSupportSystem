@@ -100,3 +100,7 @@ p.video {
     padding: 5px;
     margin-bottom: 5px;
 }
+
+#question {
+    line-height: 0.8;
+}

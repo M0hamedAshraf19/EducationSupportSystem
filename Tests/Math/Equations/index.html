@@ -10,62 +10,77 @@
         <link type='image/x-icon' rel='icon' href='../../../Favicon.ico'>
     </head>
     <body>
-        <div id='score'></div>
+        <div id=score></div>
 
-        <div id='chooseOP'>
-            <b>اختر العملية(ات)</b><br>
-            <form method='post'>
-                <input type='checkbox' name='OPs[]' value='+'>+<br>
-                <input type='checkbox' name='OPs[]' value='-'>-&nbsp;<br>
-                <input type='checkbox' name='OPs[]' value='×'>×<br><br>
-                <input type='submit' disabled name='OPsChoosen' value='Ok'/>
+        <div id=chooseDisplay>
+            <b>اختر طريقة العرض</b><br><br>
+            <form method=post>
+                <select name=display>
+                    <option value=V selected>رأسى</option>
+                    <option value=H>أفقى</option>
+                </select><br><br>
+                <input type=submit disabled value=Ok>
+                <!-- <input type=submit disabled name=displayChoosen value=Ok> -->
             </form>
         </div>
 
-        <div id='setMultiplication'>
-            <form method='post'>
+        <div id=chooseOP>
+            <b>اختر العملية(ات)</b><br>
+            <form method=post>
+                <input type=checkbox name=OPs[] value=+>+<br>
+                <input type=checkbox name=OPs[] value=->-&nbsp;<br>
+                <input type=checkbox name=OPs[] value=×>×<br><br>
+                <input type=submit disabled value=Ok>
+                <!-- <input type=submit disabled name=OPsChoosen value=Ok> -->
+            </form>
+        </div>
+
+        <div id=setMultiplication>
+            <form method=post>
                 <b>ابدأ الضرب من</b><br>
                 <select name=multiplyBegin>
-                    <option value='1' selected>1</option>
-                    <option value='2'>2</option>
-                    <option value='3'>3</option>
-                    <option value='4'>4</option>
-                    <option value='5'>5</option>
-                    <option value='6'>6</option>
-                    <option value='7'>7</option>
-                    <option value='8'>8</option>
-                    <option value='9'>9</option>
+                    <option value=1 selected>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5</option>
+                    <option value=6>6</option>
+                    <option value=7>7</option>
+                    <option value=8>8</option>
+                    <option value=9>9</option>
                 </select><br>
                 <b>أنهيه عند</b><br>
                 <select name=multiplyEnd>
-                    <option value='1'>1</option>
-                    <option value='2'>2</option>
-                    <option value='3'>3</option>
-                    <option value='4'>4</option>
-                    <option value='5'>5</option>
-                    <option value='6'>6</option>
-                    <option value='7'>7</option>
-                    <option value='8'>8</option>
-                    <option value='9' selected>9</option>
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5</option>
+                    <option value=6>6</option>
+                    <option value=7>7</option>
+                    <option value=8>8</option>
+                    <option value=9 selected>9</option>
                 </select><br><br>
-                <input type='submit' disabled name='Answered' value='Ok'/>
+                <input type=submit disabled value=Ok>
+                <!-- <input type=submit disabled name=limitChosen value=Ok> -->
             </form>
         </div>
 
-        <div id='questionForm'>
-            <p id='question'></p>
-            <form method='post'>
-                <input type='text' name='answer' size='5' autocomplete='off' id =answer><br><br>
-                <input type='submit' disabled name='Answered' value='Ok'/>
+        <div id=questionForm>
+            <p id=question></p>
+            <form method=post>
+                <input type=text name=answer size=5 autocomplete=off id =answer><br><br>
+                <input type=submit disabled value=Ok>
+                <!-- <input type=submit disabled name=Answered value=Ok> -->
             </form>
         </div><br>
 
-        <div id='buttons'>
-            <a href='../index.html'><button>حساب</button></a>
+        <div id=buttons>
+            <a href=../index.html><button>حساب</button></a>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button id='reset'>إعادة</button>
+            <button id=reset>إعادة</button>
         </div>
 
-        <script src='Script.js'></script>
+        <script src=Script.js></script>
     </body>
 </html>

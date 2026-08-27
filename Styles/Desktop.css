@@ -99,3 +99,7 @@ p.video {
     border: 6px solid blue;
     padding: 5px;
 }
+
+#question {
+    line-height: 0.8;
+}

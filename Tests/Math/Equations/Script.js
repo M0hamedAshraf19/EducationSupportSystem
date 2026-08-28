@@ -88,6 +88,15 @@ if (getCookie('display') === null) {
         setCookie('display', display)
         location.reload()
     })
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault()
+            let display=el.querySelector("select[name=display]").value
+            setCookie('display', display)
+            location.reload()
+        } 
+    })
+    console.log(el, el.querySelector('form'), el.querySelector('select[name=display]'))
 } else{
     if (getCookie('OPs') === null) {
         el=document.querySelector('#chooseOP')
@@ -106,6 +115,22 @@ if (getCookie('display') === null) {
             setCookie('OPs', JSON.stringify(selectedOPs))
             location.reload()
         })
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault()
+                let checked=el.querySelectorAll("input[type='checkbox']:checked")
+                let selectedOPs=[]
+                checked.forEach(function(checkbox) {
+                    selectedOPs.push(checkbox.value)
+                })
+                if (selectedOPs.length === 0) {
+                    alert('عليك أن تختار')
+                    return
+                }
+                setCookie('OPs', JSON.stringify(selectedOPs))
+                location.reload()
+            }
+        })
     } else {
         if (JSON.parse(getCookie('OPs')).includes('×') && getCookie('multiplyBegin') === null) {
             el=document.querySelector('#setMultiplication')
@@ -118,6 +143,17 @@ if (getCookie('display') === null) {
                 setCookie('multiplyNum0', multiplyBegin)
                 setCookie('multiplyNum1', '0')
                 location.reload()
+            })
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault()
+                    let multiplyBegin=el.querySelector("select[name=multiplyBegin]").value
+                    setCookie('multiplyBegin', multiplyBegin)
+                    setCookie('multiplyEnd', el.querySelector("select[name=multiplyEnd]").value)
+                    setCookie('multiplyNum0', multiplyBegin)
+                    setCookie('multiplyNum1', '0')
+                    location.reload()
+                }
             })
         } else {
             el=document.querySelector('#questionForm')

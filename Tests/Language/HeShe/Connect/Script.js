@@ -24,7 +24,7 @@ function deleteCookies() {
     });
 }
 
-document.querySelector('#reset').addEventListener('click', function() {
+document.getElementById('reset').addEventListener('click', function() {
     deleteCookies()
     document.querySelectorAll('form').forEach(function(form) {
         form.reset()

@@ -24,7 +24,7 @@ function deleteCookies() {
     });
 }
 
-document.querySelector('#reset').addEventListener('click', function() {
+document.getElementById('reset').addEventListener('click', function() {
     deleteCookies()
     document.querySelectorAll('form').forEach(function(form) {
         form.reset()
@@ -71,16 +71,14 @@ if (getCookie('questions') === null) {
     setCookie('answer', '', new Date(0))
 }
 
-document.querySelector('#score').innerHTML=`
-    Questions: ${getCookie('questions')}<br>Correct: ${getCookie('correct')}
-`
-document.querySelector('#score').style.display='block'
-document.querySelector('#buttons').style.display='block'
+document.getElementById('score').innerHTML=`Questions: ${getCookie('questions')}<br>Correct: ${getCookie('correct')}`
+document.getElementById('score').style.display='block'
+document.getElementById('buttons').style.display='block'
 
 let el=''
 
 if (getCookie('display') === null) {
-    el=document.querySelector('#chooseDisplay')
+    el=document.getElementById('chooseDisplay')
     el.style.display='block'
     el.querySelector('form').addEventListener('submit', function(e) {
         e.preventDefault()
@@ -99,7 +97,7 @@ if (getCookie('display') === null) {
     console.log(el, el.querySelector('form'), el.querySelector('select[name=display]'))
 } else{
     if (getCookie('OPs') === null) {
-        el=document.querySelector('#chooseOP')
+        el=document.getElementById('chooseOP')
         el.style.display='block'
         el.querySelector('form').addEventListener('submit', function(e) {
             e.preventDefault()
@@ -133,7 +131,7 @@ if (getCookie('display') === null) {
         })
     } else {
         if (JSON.parse(getCookie('OPs')).includes('×') && getCookie('multiplyBegin') === null) {
-            el=document.querySelector('#setMultiplication')
+            el=document.getElementById('setMultiplication')
             el.style.display='block'
             el.querySelector('form').addEventListener('submit', function(e) {
                 e.preventDefault()
@@ -156,7 +154,7 @@ if (getCookie('display') === null) {
                 }
             })
         } else {
-            el=document.querySelector('#questionForm')
+            el=document.getElementById('questionForm')
             let OP=''
             let num0=[]
             let num1=[]

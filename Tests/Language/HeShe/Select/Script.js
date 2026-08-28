@@ -24,7 +24,7 @@ function deleteCookies() {
     });
 }
 
-document.querySelector('#reset').addEventListener('click', function() {
+document.getElementById('reset').addEventListener('click', function() {
     deleteCookies()
     document.querySelectorAll('form').forEach(function(form) {
         form.reset()
@@ -91,14 +91,14 @@ if (getCookie('usedNames') === null) {
     }
 }
 
-document.querySelector('#score').innerHTML=`
+document.getElementById('score').innerHTML=`
     Questions: ${getCookie('questions')}<br>Correct: ${getCookie('correct')}
 `
 
 let el=''
 
 if (getCookie('answer') === null) {
-    el=document.querySelector('#questionForm')
+    el=document.getElementById('questionForm')
     el.style.display='block'
     let name=''
     if (getCookie('question') === null) {
@@ -145,7 +145,7 @@ if (getCookie('answer') === null) {
         location.reload()
     })
 } else {
-    el=document.querySelector('#questionForm')
+    el=document.getElementById('questionForm')
     el.style.display='block'
     let name= getCookie('question')
     if (Math.floor(Math.random() * 2) === 0) {
@@ -174,8 +174,8 @@ if (getCookie('answer') === null) {
     })
 }
 
-document.querySelector('#score').style.display='block'
-document.querySelector('#buttons').style.display='block'
+document.getElementById('score').style.display='block'
+document.getElementById('buttons').style.display='block'
 
 window.addEventListener('load', function() {    
     document.querySelectorAll("input[type='submit']").forEach(function(button) {

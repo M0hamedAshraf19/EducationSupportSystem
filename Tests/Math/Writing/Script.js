@@ -57,7 +57,7 @@ function deleteCookies() {
     });
 }
 
-document.querySelector('#reset').addEventListener('click', function() {
+document.getElementById('reset').addEventListener('click', function() {
     deleteCookies()
     document.querySelectorAll('form').forEach(function(form) {
         form.reset()
@@ -83,13 +83,13 @@ if (getCookie('questions') === null) {
     setCookie('answer', '', new Date(0))
 }
 
-document.querySelector('#score').innerHTML=`
+document.getElementById('score').innerHTML=`
     Questions: ${getCookie('questions')}<br>Correct: ${getCookie('correct')}
 `
 
 let nums = Object.keys(d);
 let el=''
-el=document.querySelector('#questionForm')
+el=document.getElementById('questionForm')
 el.style.display='block'
 
 if (getCookie('question') === null) {
@@ -107,8 +107,8 @@ el.querySelector('form').addEventListener('submit', function(e) {
     }
 })
 
-document.querySelector('#score').style.display='block'
-document.querySelector('#buttons').style.display='block'
+document.getElementById('score').style.display='block'
+document.getElementById('buttons').style.display='block'
 
 document.getElementById('answer').focus();
 

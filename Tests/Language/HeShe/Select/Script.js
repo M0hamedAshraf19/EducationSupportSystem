@@ -123,7 +123,7 @@ if (getCookie('answer') === null) {
     }
     if (Math.floor(Math.random() * 2) === 0) {
         el.innerHTML=`
-        <form method='post'>
+        <form>
             <input type='submit' disabled value='مذكر'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type='submit' disabled value='مونث'/><br>
         </form><br>
@@ -131,7 +131,7 @@ if (getCookie('answer') === null) {
         `
     } else {
         el.innerHTML=`
-        <form method='post'>
+        <form>
             <input type='submit' disabled value='مونث'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type='submit' disabled value='مذكر'/><br>
         </form><br>
@@ -150,7 +150,7 @@ if (getCookie('answer') === null) {
     let name= getCookie('question')
     if (Math.floor(Math.random() * 2) === 0) {
         el.innerHTML=`
-        <form method='post'>
+        <form>
             <input type='submit' disabled value='هذا'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type='submit' disabled value='هذه'/><br>
         </form><br>
@@ -158,7 +158,7 @@ if (getCookie('answer') === null) {
         `
     } else {
         el.innerHTML=`
-        <form method='post'>
+        <form>
             <input type='submit' disabled value='هذه'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type='submit' disabled value='هذا'/><br>
         </form><br>

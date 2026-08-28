@@ -1,34 +1,34 @@
 const d = {
-    "0": "صفر",
-    "1": "واحد",
-    "2": "اثنان",
-    "3": "ثلاثة",
-    "4": "أربعة",
-    "5": "خمسة",
-    "6": "ستة",
-    "7": "سبعة",
-    "8": "ثمانية",
-    "9": "تسعة",
+    '0': 'صفر',
+    '1': 'واحد',
+    '2': 'اثنان',
+    '3': 'ثلاثة',
+    '4': 'أربعة',
+    '5': 'خمسة',
+    '6': 'ستة',
+    '7': 'سبعة',
+    '8': 'ثمانية',
+    '9': 'تسعة',
 
-    "10": "عشرة",
-    "20": "عشرون",
-    "30": "ثلاثون",
-    "40": "أربعون",
-    "50": "خمسون",
-    "60": "ستون",
-    "70": "سبعون",
-    "80": "ثمانون",
-    "90": "تسعون",
+    '10': 'عشرة',
+    '20': 'عشرون',
+    '30': 'ثلاثون',
+    '40': 'أربعون',
+    '50': 'خمسون',
+    '60': 'ستون',
+    '70': 'سبعون',
+    '80': 'ثمانون',
+    '90': 'تسعون',
 
-    "100": "مائة",
-    "200": "مائتان",
-    "300": "ثلاثمائة",
-    "400": "أربعمائة",
-    "500": "خمسمائة",
-    "600": "ستمائة",
-    "700": "سبعمائة",
-    "800": "ثمانمائة",
-    "900": "تسعمائة"
+    '100': 'مائة',
+    '200': 'مائتان',
+    '300': 'ثلاثمائة',
+    '400': 'أربعمائة',
+    '500': 'خمسمائة',
+    '600': 'ستمائة',
+    '700': 'سبعمائة',
+    '800': 'ثمانمائة',
+    '900': 'تسعمائة'
 }
 
 function getCookie(name) {
@@ -98,7 +98,7 @@ if (getCookie('question') === null) {
 document.getElementById('question').textContent=`${getCookie('question')}`
 el.querySelector('form').addEventListener('submit', function(e) {
     e.preventDefault()
-    let answer=(el.querySelector("input[type='text']").value).trim()
+    let answer=(el.querySelector('input[type=text]').value).trim()
     if (answer) {
         setCookie('answer', answer)
         location.reload()
@@ -109,7 +109,7 @@ el.querySelector('form').addEventListener('submit', function(e) {
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
         e.preventDefault()
-        let answer=(el.querySelector("input[type='text']").value).trim()
+        let answer=(el.querySelector('input[type=text]').value).trim()
         if (answer) {
             setCookie('answer', answer)
             location.reload()
@@ -122,7 +122,7 @@ document.addEventListener('keydown', function(e) {
 document.getElementById('answer').focus();
 
 window.addEventListener('load', function() {
-    document.querySelectorAll("input[type='submit']").forEach(function(button) {
+    document.querySelectorAll('input[type=submit]').forEach(function(button) {
         button.disabled=false;
     });
 });

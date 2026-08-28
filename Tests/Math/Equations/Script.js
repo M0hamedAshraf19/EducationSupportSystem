@@ -84,14 +84,14 @@ if (getCookie('display') === null) {
     el.style.display='block'
     el.querySelector('form').addEventListener('submit', function(e) {
         e.preventDefault()
-        let display=el.querySelector("select[name=display]").value
+        let display=el.querySelector('select[name=display]').value
         setCookie('display', display)
         location.reload()
     })
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
             e.preventDefault()
-            let display=el.querySelector("select[name=display]").value
+            let display=el.querySelector('select[name=display]').value
             setCookie('display', display)
             location.reload()
         } 
@@ -102,7 +102,7 @@ if (getCookie('display') === null) {
         el.style.display='block'
         el.querySelector('form').addEventListener('submit', function(e) {
             e.preventDefault()
-            let checked=el.querySelectorAll("input[type='checkbox']:checked")
+            let checked=el.querySelectorAll('input[type=checkbox]:checked')
             let selectedOPs=[]
             checked.forEach(function(checkbox) {
                 selectedOPs.push(checkbox.value)
@@ -117,7 +117,7 @@ if (getCookie('display') === null) {
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') {
                 e.preventDefault()
-                let checked=el.querySelectorAll("input[type='checkbox']:checked")
+                let checked=el.querySelectorAll('input[type=checkbox]:checked')
                 let selectedOPs=[]
                 checked.forEach(function(checkbox) {
                     selectedOPs.push(checkbox.value)
@@ -136,9 +136,9 @@ if (getCookie('display') === null) {
             el.style.display='block'
             el.querySelector('form').addEventListener('submit', function(e) {
                 e.preventDefault()
-                let multiplyBegin=el.querySelector("select[name=multiplyBegin]").value
+                let multiplyBegin=el.querySelector('select[name=multiplyBegin]').value
                 setCookie('multiplyBegin', multiplyBegin)
-                setCookie('multiplyEnd', el.querySelector("select[name=multiplyEnd]").value)
+                setCookie('multiplyEnd', el.querySelector('select[name=multiplyEnd]').value)
                 setCookie('multiplyNum0', multiplyBegin)
                 setCookie('multiplyNum1', '0')
                 location.reload()
@@ -146,9 +146,9 @@ if (getCookie('display') === null) {
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter') {
                     e.preventDefault()
-                    let multiplyBegin=el.querySelector("select[name=multiplyBegin]").value
+                    let multiplyBegin=el.querySelector('select[name=multiplyBegin]').value
                     setCookie('multiplyBegin', multiplyBegin)
-                    setCookie('multiplyEnd', el.querySelector("select[name=multiplyEnd]").value)
+                    setCookie('multiplyEnd', el.querySelector('select[name=multiplyEnd]').value)
                     setCookie('multiplyNum0', multiplyBegin)
                     setCookie('multiplyNum1', '0')
                     location.reload()
@@ -189,7 +189,7 @@ if (getCookie('display') === null) {
             answerEl.focus();
             el.querySelector('form').addEventListener('submit', function(e) {
                 e.preventDefault()
-                let answer=(el.querySelector("input[type='text']").value).trim()
+                let answer=(el.querySelector('input[type=text]').value).trim()
                 if (answer) {
                     setCookie('answer', answer)
                     location.reload()
@@ -200,7 +200,7 @@ if (getCookie('display') === null) {
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter') {
                     e.preventDefault()
-                    let answer=(el.querySelector("input[type='text']").value).trim()
+                    let answer=(el.querySelector('input[type=text]').value).trim()
                     if (answer) {
                         setCookie('answer', answer)
                         location.reload()
@@ -214,7 +214,7 @@ if (getCookie('display') === null) {
 }
 
 window.addEventListener('load', function() {
-    document.querySelectorAll("input[type='submit']").forEach(function(button) {
+    document.querySelectorAll('input[type=submit]').forEach(function(button) {
         button.disabled=false;
     });
 });

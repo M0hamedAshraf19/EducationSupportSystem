@@ -138,7 +138,7 @@ if (getCookie('answer') === null) {
     }
     el.querySelector('form').addEventListener('submit', function(e) {
         e.preventDefault()
-        let answer=(el.querySelector("input[type='text']").value).trim()
+        let answer=(el.querySelector('input[type=text]').value).trim()
         if (answer) {
             setCookie('answer', JSON.stringify([answer]))
             location.reload()
@@ -149,7 +149,7 @@ if (getCookie('answer') === null) {
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
             e.preventDefault()
-            let answer=(el.querySelector("input[type='text']").value).trim()
+            let answer=(el.querySelector('input[type=text]').value).trim()
             if (answer) {
                 setCookie('answer', JSON.stringify([answer]))
                 location.reload()
@@ -177,7 +177,7 @@ if (getCookie('answer') === null) {
     }
     el.querySelector('form').addEventListener('submit', function(e) {
         e.preventDefault()
-        let answer0=(el.querySelector("input[type='text']").value).trim()
+        let answer0=(el.querySelector('input[type=text]').value).trim()
         if (answer0) {
             let answer1=JSON.parse(getCookie('answer'))
             answer1.push(answer0)
@@ -190,7 +190,7 @@ if (getCookie('answer') === null) {
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
             e.preventDefault()
-            let answer0=(el.querySelector("input[type='text']").value).trim()
+            let answer0=(el.querySelector('input[type=text]').value).trim()
             if (answer0) {
                 let answer1=JSON.parse(getCookie('answer'))
                 answer1.push(answer0)
@@ -206,7 +206,7 @@ if (getCookie('answer') === null) {
 document.getElementById('answer').focus();
 
 window.addEventListener('load', function() {    
-    document.querySelectorAll("input[type='submit']").forEach(function(button) {
+    document.querySelectorAll('input[type=submit]').forEach(function(button) {
         button.disabled=false
     })
 })

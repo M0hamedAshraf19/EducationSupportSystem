@@ -51,6 +51,6 @@ if (getCookie('questions') === null) {
 
 
 
-document.querySelectorAll("input[type='submit']").forEach(function(button) {
+document.querySelectorAll('input[type=submit]').forEach(function(button) {
     button.disabled=false
 })

@@ -140,7 +140,7 @@ if (getCookie('answer') === null) {
     }
     el.querySelector('form').addEventListener('submit', function(e) {
         e.preventDefault()
-        let answer=el.querySelector("input[type='submit']:focus").value
+        let answer=el.querySelector('input[type=submit]:focus').value
         setCookie('answer', JSON.stringify([answer]))
         location.reload()
     })
@@ -168,7 +168,7 @@ if (getCookie('answer') === null) {
     el.querySelector('form').addEventListener('submit', function(e) {
         e.preventDefault()
         let answer=JSON.parse(getCookie('answer'))
-        answer.push(el.querySelector("input[type='submit']:focus").value)
+        answer.push(el.querySelector('input[type=submit]:focus').value)
         setCookie('answer', JSON.stringify(answer))
         location.reload()
     })
@@ -178,7 +178,7 @@ document.getElementById('score').style.display='block'
 document.getElementById('buttons').style.display='block'
 
 window.addEventListener('load', function() {    
-    document.querySelectorAll("input[type='submit']").forEach(function(button) {
+    document.querySelectorAll('input[type=submit]').forEach(function(button) {
         button.disabled=false
     })
 })

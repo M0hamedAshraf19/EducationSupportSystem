@@ -52,12 +52,12 @@ if (getCookie('questions') === null) {
         let answer=JSON.parse(getCookie('answer'))[0]
         let name=getCookie('question')
         if (!((name[0] === 'M' && answer === 'مثنى مذكر') || (name[0] === 'F' && answer === 'مثنى مونث'))) {
-            if (answer == 'مثنى مذكر') {
-                alert(`غلط!
-الاجابة هى: مثنى مونث`)
-            } else {
+            if (name[0] === 'M') {
                 alert(`غلط!
 الاجابة هى: مثنى مذكر`)
+            } else {
+                alert(`غلط!
+الاجابة هى: مثنى مونث`)
             }
             setCookie('questions', parseInt(getCookie('questions')) + 1)
             setCookie('question', '', new Date(0))
@@ -72,12 +72,12 @@ if (getCookie('questions') === null) {
         if ((name[0] === 'M' && answer === 'هذان') || (name[0] === 'F' && answer === 'هاتان')) {
             setCookie('correct', parseInt(getCookie('correct'))+1)
         } else {
-            if (answer == 'هذان') {
-                alert(`غلط!
-الاجابة هى: هاتان`)
-            } else {
+            if (name[0] === 'M') {
                 alert(`غلط!
 الاجابة هى: هذان`)
+            } else {
+                alert(`غلط!
+الاجابة هى: هاتان`)
             }
         }
     }
@@ -92,9 +92,10 @@ if (getCookie('usedNames') === null) {
     }
 }
 
-document.getElementById('score').innerHTML=`
-    Questions: ${getCookie('questions')}<br>Correct: ${getCookie('correct')}
-`
+const scoreEl = document.getElementById('score')
+scoreEl.innerHTML=`Questions: ${getCookie('questions')}<br>Correct: ${getCookie('correct')}`
+scoreEl.style.display='block'
+document.getElementById('buttons').style.display='block'
 
 let el=''
 
@@ -123,13 +124,13 @@ if (getCookie('answer') === null) {
         name=getCookie('question')
     }
     if (Math.floor(Math.random() * 2) === 0) {
-        el.querySelector('#typeOptions').innerHTML=`
+        document.getElementById('typeOptions').innerHTML=`
         <button>مثنى مذكر</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;او&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button>مثنى مونث</button><br><br>
         <img src='../Images/${name}' style='width: 50%; max-height: 450px; object-fit: contain;'>
         `
     } else {
-        el.querySelector('#typeOptions').innerHTML=`
+        document.getElementById('typeOptions').innerHTML=`
         <button>مثنى مونث</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;او&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button>مثنى مذكر</button><br><br>
         <img src='../Images/${name}' style='width: 50%; max-height: 450px; object-fit: contain;'>
@@ -145,18 +146,30 @@ if (getCookie('answer') === null) {
             alert('عليك أن تكتب')
         }
     })
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault()
+            let answer=(el.querySelector("input[type='text']").value).trim()
+            if (answer) {
+                setCookie('answer', JSON.stringify([answer]))
+                location.reload()
+            } else {
+                alert('عليك أن تكتب')
+            }
+        }
+    })
 } else {
     el=document.getElementById('questionForm')
     el.style.display='block'
     let name= getCookie('question')
     if (Math.floor(Math.random() * 2) === 0) {
-        el.querySelector('#typeOptions').innerHTML=`
+        document.getElementById('typeOptions').innerHTML=`
         <button>هذان</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;او&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button>هاتان</button><br><br>
         <img src='../Images/${name}' style='width: 50%; max-height: 450px; object-fit: contain;'>
         `
     } else {
-        el.querySelector('#typeOptions').innerHTML=`
+        document.getElementById('typeOptions').innerHTML=`
         <button>هاتان</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;او&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button>هذان</button><br><br>
         <img src='../Images/${name}' style='width: 50%; max-height: 450px; object-fit: contain;'>
@@ -164,20 +177,31 @@ if (getCookie('answer') === null) {
     }
     el.querySelector('form').addEventListener('submit', function(e) {
         e.preventDefault()
-        let newAnswer=(el.querySelector("input[type='text']").value).trim()
-        if (newAnswer) {
-            let answer=JSON.parse(getCookie('answer'))
-            answer.push(newAnswer)
-            setCookie('answer', JSON.stringify(answer))
+        let answer0=(el.querySelector("input[type='text']").value).trim()
+        if (answer0) {
+            let answer1=JSON.parse(getCookie('answer'))
+            answer1.push(answer0)
+            setCookie('answer', JSON.stringify(answer1))
             location.reload()
         } else {
             alert('عليك أن تكتب')
         }
     })
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault()
+            let answer0=(el.querySelector("input[type='text']").value).trim()
+            if (answer0) {
+                let answer1=JSON.parse(getCookie('answer'))
+                answer1.push(answer0)
+                setCookie('answer', JSON.stringify(answer1))
+                location.reload()
+            } else {
+                alert('عليك أن تكتب')
+            }
+        }
+    })
 }
-
-document.getElementById('score').style.display='block'
-document.getElementById('buttons').style.display='block'
 
 document.getElementById('answer').focus();
 

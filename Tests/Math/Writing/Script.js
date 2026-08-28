@@ -83,19 +83,19 @@ if (getCookie('questions') === null) {
     setCookie('answer', '', new Date(0))
 }
 
-document.getElementById('score').innerHTML=`
-    Questions: ${getCookie('questions')}<br>Correct: ${getCookie('correct')}
-`
+const scoreEl = document.getElementById('score')
+scoreEl.innerHTML=`Questions: ${getCookie('questions')}<br>Correct: ${getCookie('correct')}`
+scoreEl.style.display='block'
+document.getElementById('buttons').style.display='block'
 
 let nums = Object.keys(d);
-let el=''
-el=document.getElementById('questionForm')
+let el=document.getElementById('questionForm')
 el.style.display='block'
 
 if (getCookie('question') === null) {
     setCookie('question', `${nums[Math.floor(Math.random()*nums.length)]}`)
 }
-el.querySelector('#question').textContent=`${getCookie('question')}`
+document.getElementById('question').textContent=`${getCookie('question')}`
 el.querySelector('form').addEventListener('submit', function(e) {
     e.preventDefault()
     let answer=(el.querySelector("input[type='text']").value).trim()
@@ -106,9 +106,18 @@ el.querySelector('form').addEventListener('submit', function(e) {
         alert('عليك أن تكتب')
     }
 })
-
-document.getElementById('score').style.display='block'
-document.getElementById('buttons').style.display='block'
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault()
+        let answer=(el.querySelector("input[type='text']").value).trim()
+        if (answer) {
+            setCookie('answer', answer)
+            location.reload()
+        } else {
+            alert('عليك أن تكتب')
+        }
+    }
+})
 
 document.getElementById('answer').focus();
 

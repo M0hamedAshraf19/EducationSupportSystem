@@ -71,11 +71,13 @@ if (getCookie('questions') === null) {
     setCookie('answer', '', new Date(0))
 }
 
-document.getElementById('score').innerHTML=`Questions: ${getCookie('questions')}<br>Correct: ${getCookie('correct')}`
-document.getElementById('score').style.display='block'
+const scoreEl = document.getElementById('score')
+scoreEl.innerHTML=`Questions: ${getCookie('questions')}<br>Correct: ${getCookie('correct')}`
+scoreEl.style.display='block'
 document.getElementById('buttons').style.display='block'
 
 let el=''
+const answerEl = document.getElementById('answer')
 
 if (getCookie('display') === null) {
     el=document.getElementById('chooseDisplay')
@@ -94,7 +96,6 @@ if (getCookie('display') === null) {
             location.reload()
         } 
     })
-    console.log(el, el.querySelector('form'), el.querySelector('select[name=display]'))
 } else{
     if (getCookie('OPs') === null) {
         el=document.getElementById('chooseOP')
@@ -180,12 +181,12 @@ if (getCookie('display') === null) {
             }
             const q = JSON.parse(getCookie('question'))
             if (getCookie('display') == 'H') {
-                el.querySelector('#question').innerHTML=`${q[0]+q[1]+q[2]}`
+                document.getElementById('question').innerHTML=`${q[0]+q[1]+q[2]}`
             } else {
-                el.querySelector('#question').innerHTML=`${q[0]+'<br>'+'&nbsp;'.repeat(q[0].length*2+1)+q[1]+'<br>'+q[2]}`
+                document.getElementById('question').innerHTML=`${q[0]+'<br>'+'&nbsp;'.repeat(q[0].length*2+1)+q[1]+'<br>'+q[2]}`
             }
             el.style.display='block'
-            document.getElementById('answer').focus();
+            answerEl.focus();
             el.querySelector('form').addEventListener('submit', function(e) {
                 e.preventDefault()
                 let answer=(el.querySelector("input[type='text']").value).trim()
@@ -194,6 +195,18 @@ if (getCookie('display') === null) {
                     location.reload()
                 } else {
                     alert('عليك أن تكتب')
+                }
+            })
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault()
+                    let answer=(el.querySelector("input[type='text']").value).trim()
+                    if (answer) {
+                        setCookie('answer', answer)
+                        location.reload()
+                    } else {
+                        alert('عليك أن تكتب')
+                    }
                 }
             })
         }
@@ -206,15 +219,14 @@ window.addEventListener('load', function() {
     });
 });
 
-const inp = document.getElementById('answer')
-inp.addEventListener('beforeinput', (e) => {
+answerEl.addEventListener('beforeinput', (e) => {
     if (e.inputType === 'insertText') {
         e.preventDefault();
-        inp.value = e.data + inp.value;
-        inp.setSelectionRange(0, 0);
+        answerEl.value = e.data + answerEl.value;
+        answerEl.setSelectionRange(0, 0);
     } else if (e.inputType === 'deleteContentBackward') {
         e.preventDefault()
-        inp.value = inp.value.slice(1)
-        inp.setSelectionRange(0, 0);
+        answerEl.value = answerEl.value.slice(1)
+        answerEl.setSelectionRange(0, 0);
     }
 });

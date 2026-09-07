@@ -59,7 +59,7 @@ if (getCookie('questions') === null) {
     }
     q = q[0] + ' ' + q[1] + ' ' + q [2]
     const a = getCookie('answer')
-    l = JSON.parse(getCookie('log'))
+    const l = JSON.parse(getCookie('log'))
     if (a == eval(q))
     {
         l.push(q + ' = ' + a + ' ✅')
@@ -82,7 +82,6 @@ document.getElementById('buttons').style.display='block'
 
 let el=''
 const answerEl = document.getElementById('answer')
-
 if (getCookie('display') === null) {
     el=document.getElementById('chooseDisplay')
     el.style.display='block'

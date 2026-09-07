@@ -29,28 +29,87 @@ document.getElementById('reset').addEventListener('click', function() {
     document.querySelectorAll('form').forEach(function(form) {
         form.reset()
     })
+    document.cookie = `langMode=;expires=${new Date(0).toUTCString()};path=/Tests/Language/New/`
     location.href='../index.html'
 })
 
-const request=new XMLHttpRequest();
-request.open('GET', '../../Images.json', false);
-request.send(null);
-
-fileNames=[];
-if (request.status === 200) {
-    fileNames=JSON.parse(request.responseText).heShe;
+let m0 = null; let f0 = null; let m1 = null; let f1 = null; let imgDir = null
+if (document.cookie.match(new RegExp('(^| )langMode=([^;]+)'))[2] == 'heShe') {
+    m0 = 'مذكر'
+    f0 = 'مونث'
+    m1 = 'هذا'
+    f1 = 'هذه'
+    imgDir = 'HeShe'
 } else {
-    console.error('Error loading JSON:', request.status);
+    m0 = 'مثنى مذكر'
+    f0 = 'مثنى مونث'
+    m1 = 'هذان'
+    f1 = 'هاتان'
+    imgDir = 'Double'
 }
-
 if (getCookie('questions') === null) {
     deleteCookies()
     setCookie('questions', '0')
     setCookie('correct', '0')
-} else {}
+    setCookie('usedNames', JSON.stringify([]))
+    setCookie('log', '[]')
+} else if (getCookie('answer') !== null) {
+    const q = getCookie('question')
+    const a = JSON.parse(getCookie('answer'))
+    const l = JSON.parse(getCookie('log'))
+    if (JSON.parse(getCookie('answer')).length === 1) {
+        if ((q[0] === 'M' && a[0] === f0) || (q[0] === 'F' && a[0] === m0)) {
+            l.push(q.slice(2, q.indexOf('.')) + ': ' + a[0] + ' ❎')
+            setCookie('log', JSON.stringify(l))
+            setCookie('questions', parseInt(getCookie('questions')) + 1)
+            setCookie('question', '', new Date(0))
+            setCookie('answer', '', new Date(0))
+            if (q[0] === 'M') {
+                alert(`غلط!
+الاجابة هى: ${m0}`)
+            } else {
+                alert(`غلط!
+الاجابة هى: ${f0}`)
+            }
+        }
+    } else {
+        setCookie('questions', parseInt(getCookie('questions'))+1)
+        if ((q[0] === 'M' && a[1] === m1) || (q[0] === 'F' && a[1] === f1)) {
+            l.push(q.slice(2, q.indexOf('.')) + ': \u2067' + a[0] + '\u2069, \u2067' + a[1] + '\u2069 ✅')
+            setCookie('correct', parseInt(getCookie('correct'))+1)
+        } else {
+            l.push(q.slice(2, q.indexOf('.')) + ': \u2067' + a[0] + '\u2069, \u2067' + a[1] + '\u2069 ❎')
+            if (q[0] === 'M') {
+                alert(`غلط!
+الاجابة هى: ${m1}`)
+            } else {
+                alert(`غلط!
+الاجابة هى: ${f1}`)
+            }
+        }
+        setCookie('log', JSON.stringify(l))
+        setCookie('question', '', new Date(0))
+        setCookie('answer', '', new Date(0))
+    }
+}
 
+let fileNames = []
+async function loadFileNames() {
+    const response = await fetch('../Images.json');
+    const data = await response.json();
+    if (m0 == 'مذكر') {
+        fileNames=data.heShe
+    } else {
+        fileNames=data.double
+    }
+}
 
+const scoreEl = document.getElementById('score')
+scoreEl.innerHTML=`Questions: ${getCookie('questions')}<br>Correct: ${getCookie('correct')}`
 
-document.querySelectorAll('input[type=submit]').forEach(function(button) {
-    button.disabled=false
+let el = document.getElementById('questionForm')
+let name=''
+
+loadFileNames().then(() => {
+    
 })

@@ -74,7 +74,7 @@ if (getCookie('questions') === null) {
     setCookie('questions', parseInt(getCookie('questions'))+1)
     const q = getCookie('question')
     const a = getCookie('answer')
-    l = JSON.parse(getCookie('log'))
+    const l = JSON.parse(getCookie('log'))
     if (a == d[q])
     {
         l.push(q + ': ' + a + ' ✅')

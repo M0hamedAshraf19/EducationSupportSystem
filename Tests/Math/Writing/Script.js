@@ -69,16 +69,23 @@ if (getCookie('questions') === null) {
     deleteCookies()
     setCookie('questions', 0)
     setCookie('correct', 0)
+    setCookie('log', '[]')
 } else if (getCookie('answer') !== null) {
     setCookie('questions', parseInt(getCookie('questions'))+1)
-    if (getCookie('answer') == d[getCookie('question')])
+    const q = getCookie('question')
+    const a = getCookie('answer')
+    l = JSON.parse(getCookie('log'))
+    if (a == d[q])
     {
+        l.push(q + ': ' + a + ' ✅')
         setCookie('correct', parseInt(getCookie('correct'))+1)
     }
     else {
+        l.push(q + ': ' + a + ' ❎')
         alert(`غلط!
 الاجابة هى: ${d[getCookie('question')]}`)
     }
+    setCookie('log', JSON.stringify(l))
     setCookie('question', '', new Date(0))
     setCookie('answer', '', new Date(0))
 }

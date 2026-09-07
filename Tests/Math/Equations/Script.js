@@ -36,22 +36,11 @@ if (getCookie('questions') === null) {
     deleteCookies()
     setCookie('questions', 0)
     setCookie('correct', 0)
+    setCookie('log', '[]')
 } else if (getCookie('answer') !== null) {
-    let q = JSON.parse(getCookie('question'))
-    if (q[1] == '×') {
-        q[1] = '*'
-    }
-    q = q.join('')
     setCookie('questions', parseInt(getCookie('questions'))+1)
-    if (getCookie('answer') == eval(q))
-    {
-        setCookie('correct', parseInt(getCookie('correct'))+1)
-    }
-    else {
-        alert(`غلط!
-الاجابة هى: \u202A${q} = ${eval(q)}\u202C`)
-    }
-    if (getCookie('question').indexOf('×') >= 0) {
+    let q = JSON.parse(getCookie('question'))
+    if (q[1] == '×') { 
         let multiplyNum0=parseInt(getCookie('multiplyNum0'))
         let multiplyNum1=parseInt(getCookie('multiplyNum1'))
         if (multiplyNum1 < 9) {
@@ -66,7 +55,22 @@ if (getCookie('questions') === null) {
         }
         setCookie('multiplyNum0', multiplyNum0)
         setCookie('multiplyNum1', multiplyNum1)
+        q[1] = '*'
     }
+    q = q[0] + ' ' + q[1] + ' ' + q [2]
+    const a = getCookie('answer')
+    l = JSON.parse(getCookie('log'))
+    if (a == eval(q))
+    {
+        l.push(q + ' = ' + a + ' ✅')
+        setCookie('correct', parseInt(getCookie('correct'))+1)
+    }
+    else {
+        l.push(q + ' = ' + a + ' ❎')
+        alert(`غلط!
+الاجابة هى: \u202A${q} = ${eval(q)}\u202C`)
+    }
+    setCookie('log', JSON.stringify(l))
     setCookie('question', '', new Date(0))
     setCookie('answer', '', new Date(0))
 }
@@ -159,6 +163,7 @@ if (getCookie('display') === null) {
             let OP=''
             let num0=[]
             let num1=[]
+            let q = []
             if (getCookie('question') === null) {
                 OP=JSON.parse(getCookie('OPs'))[Math.floor(Math.random() * JSON.parse(getCookie('OPs')).length)]
                 if (OP === '+') {
@@ -177,9 +182,11 @@ if (getCookie('display') === null) {
                     num0=getCookie('multiplyNum0')
                     num1=getCookie('multiplyNum1')
                 }
-                setCookie('question', JSON.stringify([num0, OP, num1]))
+                q = [num0, OP, num1]
+                setCookie('question', JSON.stringify(q))
+            } else {
+                q = JSON.parse(getCookie('question'))
             }
-            const q = JSON.parse(getCookie('question'))
             if (getCookie('display') == 'H') {
                 document.getElementById('question').innerHTML=`${q[0]+q[1]+q[2]}`
             } else {

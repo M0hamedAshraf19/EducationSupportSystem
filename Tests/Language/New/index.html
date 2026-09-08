@@ -6,16 +6,16 @@
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
         <link rel='stylesheet' href='../../../Styles/Mobile.css' media='(max-width: 767px)'>
         <link rel='stylesheet' href='../../../Styles/Tablet.css' media='(min-width: 768px) and (max-width: 1023px)'>
-        <link rel='stylesheet' href='../../../Styles/Desktop.css' media='(min-width: 1024px)'>
+        <link rel='stylesheet' href='../../../../Styles/Desktop.css' media='(min-width: 1024px)'>
         <link type='image/x-icon' rel='icon' href='../../../Favicon.ico'>
     </head>
     <body>
         <h1>لغة</h1>
         <a href='Tests.html'>
-            <button onclick="document.cookie = `langMode=heShe;path=/Tests/Language/New/`">هذا/هذه</button>
+            <button onclick="document.cookie = `langMode=heShe;path=${window.location.pathname}`">هذا/هذه</button>
         </a><br><br>
         <a href='Tests.html'>
-            <button onclick="document.cookie = `langMode=double;path=/Tests/Language/New/`">هذان/هاتان</button>
+            <button onclick="document.cookie = `langMode=double;path=${window.location.pathname}`">هذان/هاتان</button>
         </a><br><br>
         <a href='../../index.html'>
             <button>الاختبارات</button>

@@ -30,7 +30,7 @@ document.getElementById('reset').addEventListener('click', function() {
         form.reset()
     })
     document.cookie = `langMode=;expires=${new Date(0).toUTCString()};path=/EducationSupportSystem/Tests/Language/`
-    location.href='../index.html'
+    location.href='../'
 })
 
 

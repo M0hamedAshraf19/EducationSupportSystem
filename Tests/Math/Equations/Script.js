@@ -29,7 +29,7 @@ document.getElementById('reset').addEventListener('click', function() {
     document.querySelectorAll('form').forEach(function(form) {
         form.reset()
     })
-    location.href='../index.html'
+    location.href='../'
 })
 
 if (getCookie('questions') === null) {

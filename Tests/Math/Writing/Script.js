@@ -55,11 +55,12 @@ function deleteCookies() {
 
 document.getElementById('pasteLog').addEventListener('click', async function() {
     let text = 'Date: '+ new Date(Date.now()).toLocaleString() +'\n\n'
-    JSON.parse(getCookie('log')).forEach(log => {
-        text += log+'\n\n'
-    });
-    await navigator.clipboard.writeText(text);
-    alert("The Logs Have Been Successfully Copied");
+    const logs = JSON.parse(getCookie('log'))
+    if (logs.length != 0) {
+        logs.forEach(log => { text += log+'\n\n'});
+        await navigator.clipboard.writeText(text);
+        alert("The Logs Have Been Successfully Copied");
+    } else { alert("You Havn't Answered Any Questions Yet") }
 })
 
 document.getElementById('reset').addEventListener('click', function() {

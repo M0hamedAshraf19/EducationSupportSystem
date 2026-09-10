@@ -27,7 +27,7 @@ document.getElementById('pasteLog').addEventListener('click', async function() {
         logs.forEach(log => { text += log+'\n\n'});
         await navigator.clipboard.writeText(text);
         alert("The Logs Have Been Successfully Copied");
-    } else { alert("You Havn't Answered Any Questions Yet") }
+    } else { alert("You Haven't Answered Any Questions Yet") }
 })
 
 document.getElementById('reset').addEventListener('click', function() {

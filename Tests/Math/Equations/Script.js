@@ -3,12 +3,8 @@ function getCookie(name) {
     return cookie ? cookie[2]: null;
 }
 
-function setCookie(name, value, expires=null) {
-    if (expires) {
-        document.cookie=`${name}=${value}; expires=${expires.toUTCString()}; path=${window.location.pathname}`
-    } else {
-        document.cookie=`${name}=${value}; path=${window.location.pathname}`
-    }
+function setCookie(name, value='', expires=new Date(Date.now() + 365*24*60*60*1000)) {
+    document.cookie=`${name}=${value}; expires=${expires.toUTCString()}; path=${window.location.pathname}`
 }
 
 function browseCookies() {
@@ -23,6 +19,15 @@ function deleteCookies() {
         setCookie(cookie.split('=')[0], '', new Date(0))
     });
 }
+
+document.getElementById('pasteLog').addEventListener('click', async function() {
+    let text = 'Date: '+ new Date(Date.now()).toLocaleString() +'\n\n'
+    JSON.parse(getCookie('log')).forEach(log => {
+        text += log+'\n\n'
+    });
+    await navigator.clipboard.writeText(text);
+    alert("The Logs Have Been Successfully Copied");
+})
 
 document.getElementById('reset').addEventListener('click', function() {
     deleteCookies()
@@ -62,11 +67,11 @@ if (getCookie('questions') === null) {
     const l = JSON.parse(getCookie('log'))
     if (a == eval(q))
     {
-        l.push(q + ' = ' + a + ' ✅')
+        l.push(q + ' = ' + a + ' 🟢')
         setCookie('correct', parseInt(getCookie('correct'))+1)
     }
     else {
-        l.push(q + ' = ' + a + ' ❎')
+        l.push(q + ' = ' + a + ' 🔴')
         alert(`غلط!
 الاجابة هى: \u202A${q} = ${eval(q)}\u202C`)
     }

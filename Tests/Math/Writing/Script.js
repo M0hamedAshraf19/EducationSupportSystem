@@ -36,12 +36,8 @@ function getCookie(name) {
     return cookie ? cookie[2]: null;
 }
 
-function setCookie(name, value, expires=null) {
-    if (expires) {
-        document.cookie=`${name}=${value}; expires=${expires.toUTCString()}; path=${window.location.pathname}`
-    } else {
-        document.cookie=`${name}=${value}; path=${window.location.pathname}`
-    }
+function setCookie(name, value='', expires=new Date(Date.now() + 365*24*60*60*1000)) {
+    document.cookie=`${name}=${value}; expires=${expires.toUTCString()}; path=${window.location.pathname}`
 }
 
 function browseCookies() {
@@ -77,11 +73,11 @@ if (getCookie('questions') === null) {
     const l = JSON.parse(getCookie('log'))
     if (a == d[q])
     {
-        l.push(q + ': ' + a + ' ✅')
+        l.push(q + ': ' + a + ' 🟢')
         setCookie('correct', parseInt(getCookie('correct'))+1)
     }
     else {
-        l.push(q + ': ' + a + ' ❎')
+        l.push(q + ': ' + a + ' 🔴')
         alert(`غلط!
 الاجابة هى: ${d[getCookie('question')]}`)
     }

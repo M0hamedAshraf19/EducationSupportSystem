@@ -3,12 +3,8 @@ function getCookie(name) {
     return cookie ? cookie[2] : null;
 }
 
-function setCookie(name, value, expires=null) {
-    if (expires) {
-        document.cookie=`${name}=${value}; expires=${expires.toUTCString()}; path=${window.location.pathname}`
-    } else {
-        document.cookie=`${name}=${value}; path=${window.location.pathname}`
-    }
+function setCookie(name, value='', expires=new Date(Date.now() + 365*24*60*60*1000)) {
+    document.cookie=`${name}=${value}; expires=${expires.toUTCString()}; path=${window.location.pathname}`
 }
 
 function browseCookies() {
@@ -60,7 +56,7 @@ if (getCookie('questions') === null) {
     const l = JSON.parse(getCookie('log'))
     if (JSON.parse(getCookie('answer')).length === 1) {
         if ((q[0] === 'M' && a[0] === f0) || (q[0] === 'F' && a[0] === m0)) {
-            l.push(q.slice(2, q.indexOf('.')) + ': ' + a[0] + ' ❎')
+            l.push(q.slice(2, q.indexOf('.')) + ': ' + a[0] + ' 🔴')
             setCookie('log', JSON.stringify(l))
             setCookie('questions', parseInt(getCookie('questions')) + 1)
             setCookie('question', '', new Date(0))
@@ -76,10 +72,10 @@ if (getCookie('questions') === null) {
     } else {
         setCookie('questions', parseInt(getCookie('questions'))+1)
         if ((q[0] === 'M' && a[1] === m1) || (q[0] === 'F' && a[1] === f1)) {
-            l.push(q.slice(2, q.indexOf('.')) + ': \u2067' + a[0] + '\u2069, \u2067' + a[1] + '\u2069 ✅')
+            l.push(q.slice(2, q.indexOf('.')) + ': \u2067' + a[0] + '\u2069, \u2067' + a[1] + '\u2069 🟢')
             setCookie('correct', parseInt(getCookie('correct'))+1)
         } else {
-            l.push(q.slice(2, q.indexOf('.')) + ': \u2067' + a[0] + '\u2069, \u2067' + a[1] + '\u2069 ❎')
+            l.push(q.slice(2, q.indexOf('.')) + ': \u2067' + a[0] + '\u2069, \u2067' + a[1] + '\u2069 🔴')
             if (q[0] === 'M') {
                 alert(`غلط!
 الاجابة هى: ${m1}`)

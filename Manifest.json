@@ -3,7 +3,7 @@
 "short_name": "Education System",
 "icons": [
     {
-    "src": "Favicon.png",
+    "src": "Icon/FavIcon.png",
     "sizes": "512x512",
     "type": "image/png"
     }

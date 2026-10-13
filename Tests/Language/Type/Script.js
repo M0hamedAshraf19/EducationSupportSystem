@@ -1,18 +1,15 @@
 function getCookie(name) {
     const cookie=document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'))
-    return cookie ? cookie[2] : null;
+    return cookie ? cookie[2]: null;
 }
-
 function setCookie(name, value='', expires=new Date(Date.now() + 365*24*60*60*1000)) {
     document.cookie=`${name}=${value}; expires=${expires.toUTCString()}; path=${window.location.pathname}`
 }
-
 function browseCookies() {
     document.cookie.split('; ').forEach(function(cookie) {
         console.log(cookie)
     });
 }
-
 function deleteCookies() {
     if (!document.cookie) return
     document.cookie.split('; ').forEach(function(cookie) {
@@ -53,6 +50,7 @@ if (document.cookie.match(new RegExp('(^| )langMode=([^;]+)'))[2] == 'heShe') {
     f1 = 'هاتان'
     imgDir = 'Double'
 }
+
 if (getCookie('questions') === null) {
     deleteCookies()
     setCookie('questions', '0')
@@ -109,10 +107,8 @@ async function loadFileNames() {
         fileNames=data.double
     }
 }
-
 const scoreEl = document.getElementById('score')
 scoreEl.innerHTML=`Questions: ${getCookie('questions')}<br>Correct: ${getCookie('correct')}`
-
 let el = document.getElementById('questionForm')
 let name=''
 

@@ -35,17 +35,14 @@ function getCookie(name) {
     const cookie=document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'))
     return cookie ? cookie[2]: null;
 }
-
 function setCookie(name, value='', expires=new Date(Date.now() + 365*24*60*60*1000)) {
     document.cookie=`${name}=${value}; expires=${expires.toUTCString()}; path=${window.location.pathname}`
 }
-
 function browseCookies() {
     document.cookie.split('; ').forEach(function(cookie) {
         console.log(cookie)
     });
 }
-
 function deleteCookies() {
     if (!document.cookie) return
     document.cookie.split('; ').forEach(function(cookie) {
@@ -100,7 +97,6 @@ const scoreEl = document.getElementById('score')
 scoreEl.innerHTML=`Questions: ${getCookie('questions')}<br>Correct: ${getCookie('correct')}`
 scoreEl.style.display='block'
 document.getElementById('buttons').style.display='block'
-
 let nums = Object.keys(d);
 let el=document.getElementById('questionForm')
 el.style.display='block'
@@ -109,6 +105,7 @@ if (getCookie('question') === null) {
     setCookie('question', `${nums[Math.floor(Math.random()*nums.length)]}`)
 }
 document.getElementById('question').textContent=`${getCookie('question')}`
+
 el.querySelector('form').addEventListener('submit', function(e) {
     e.preventDefault()
     let answer=(el.querySelector('input[type=text]').value).trim()

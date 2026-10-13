@@ -2,17 +2,14 @@ function getCookie(name) {
     const cookie=document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'))
     return cookie ? cookie[2]: null;
 }
-
 function setCookie(name, value='', expires=new Date(Date.now() + 365*24*60*60*1000)) {
     document.cookie=`${name}=${value}; expires=${expires.toUTCString()}; path=${window.location.pathname}`
 }
-
 function browseCookies() {
     document.cookie.split('; ').forEach(function(cookie) {
         console.log(cookie)
     });
 }
-
 function deleteCookies() {
     if (!document.cookie) return
     document.cookie.split('; ').forEach(function(cookie) {
@@ -85,9 +82,9 @@ const scoreEl = document.getElementById('score')
 scoreEl.innerHTML=`Questions: ${getCookie('questions')}<br>Correct: ${getCookie('correct')}`
 scoreEl.style.display='block'
 document.getElementById('buttons').style.display='block'
-
 let el=''
 const answerEl = document.getElementById('answer')
+
 if (getCookie('display') === null) {
     el=document.getElementById('chooseDisplay')
     el.style.display='block'
